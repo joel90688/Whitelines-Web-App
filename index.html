@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload YEP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <input type="file" accept="image/*" name="image" id="file" style="display: none"
+  onchange="loadFile(event)">
+  <label for="file"><img src="images/uploadIcon.png" class="upload-icon"></label>
+<div class="container" id="imgBox">
+  <div id="prevText"></div>
+
+  
+</div>
+
+<script>
+  var imgBox = document.getElementById("imgBox");
+
+  var loadFile = function(event) {
+    imgBox.style.backgroundImage = "url(" + URL.createObjectURL(event.target.files[0]) + ")";
+  }
+
+
+</script>
+
+</body>
+</html>
