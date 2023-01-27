@@ -6,13 +6,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <input type="file" accept="image/*" name="image" id="file" style="display: none"
-  onchange="loadFile(event)">
-  <label for="file"><img src="images/uploadIcon.png" class="upload-icon"></label>
-<div class="container" id="imgBox">
-  <div id="prevText"></div>
 
-  
+<input type="file" accept="image/*" name="image" id="uploadButton" style="display: none"
+onchange="loadFile(event)">
+<label for="uploadButton"><img src="images/uploadIcon.png" class="upload-icon"></label>
+
+<div class="container" id="imgBox">
 </div>
 
 <script>
