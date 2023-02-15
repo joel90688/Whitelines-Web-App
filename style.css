@@ -54,7 +54,43 @@ background-position: center;
   width: 100%;
 }
 
+.homebutton{
+  padding: 35px 0;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  left: 80%;
+  margin-bottom: auto;
+  bottom: auto;
+}
 
+.homebutton ul li{
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+  position: relative;
+}
+
+.homebutton ul li a{
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+}
+
+.homebutton ul li::after{
+  content: '';
+  height: 3px;
+  width: 0;
+  background: #009688;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  transition: 0.5s;
+}
+
+.homebutton ul li:hover::after{
+  width: 100%;
+}
 
 *{
   margin: 0;
@@ -69,9 +105,15 @@ body{
   justify-content: center;
   background:rgb(209, 87, 87)
 }
-.container{
+
+#imgBox {
   width: 850px;
+}
+
+.container{
+  width: 360px;
   padding: 30px 35px 35px;
+  margin: 0px 35px 0px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -90,7 +132,7 @@ body{
 .container .wrapper{
   display: flex;
   margin: 20px 0;
-  min-height: 335px;
+  min-height: 300px;
 }
 .wrapper .editor-panel{
   padding: 15px 20px;
@@ -189,6 +231,9 @@ body{
   background: rgb(209, 87, 87);
   border: 1px solid rgb(209, 87, 87);
 }
+.controls .row{
+  margin-top: 20px;
+}
 
 .container .preview-img{
   flex-grow: 1;
@@ -200,21 +245,13 @@ body{
 }
 .preview-img img{
   max-width: 490px;
-  max-height: 335px;
+  max-height: 490px;
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-.upload-icon{
-  position: absolute;
-  width: 60px;
-  bottom: 100px;
-  left: 28%;
-  top: 5%;
-  transform: translateX(-50%);
-  cursor: pointer;
-  z-index: 9999;
-}
+
+
 
 @media screen and (max-width: 760px) {
   .container{
