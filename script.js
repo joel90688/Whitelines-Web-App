@@ -124,7 +124,18 @@ const saveImage = () => {
 }
 
 const runBoxes = () => {
-    
+    const selectedBox = document.querySelector(".boxFilter .active");
+
+    if(selectedBox.id === "brightnessBox") {
+        brightness = 50;
+    } else if(selectedBox.id === "saturationBox") {
+        saturation = 50;
+    } else if(selectedBox.id === "inversionBox") {
+        inversion = 50;
+    } else if(selectedBox.id === "grayscaleBox") {
+        grayscale = 50;
+    }
+    applyFilter();
 }
 
 filterSlider.addEventListener("input", updateFilter);
