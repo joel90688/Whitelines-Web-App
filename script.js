@@ -123,8 +123,13 @@ const saveImage = () => {
     link.click();
 }
 
+const runBoxes = () => {
+    
+}
+
 filterSlider.addEventListener("input", updateFilter);
 resetFilterBtn.addEventListener("click", resetFilter);
 saveImgBtn.addEventListener("click", saveImage);
 fileInput.addEventListener("change", loadImage);
 chooseImgBtn.addEventListener("click", () => fileInput.click());
+boxPlay.addEventListener("click", runBoxes);
