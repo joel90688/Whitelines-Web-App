@@ -32,12 +32,33 @@ const applyFilter = () => {
     previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
 }
 
+const BlockNames = Object.freeze({ 
+    FirstFunction: "brightnessBox", 
+    SecondFunction: "saturationBox" 
+  });
+  
+  
+  var blockFunctions = {
+    [BlockNames.FirstFunction]: function(){
+        brightness = 50;
+    },
+    [BlockNames.SecondFunction]: function(){
+        saturation = 50;
+    }
+  };
+  
+const parseBlocks = () => {
+    boxOrder.forEach(element => blockFunctions[element]());
+    applyFilter();
+};
+
+
 boxes.forEach(box => {
     box.addEventListener("click", () => {
         boxOrder.push(box.id);
         document.querySelector(".active").classList.remove("active");
         box.classList.add("active");
-
+        console.log(boxOrder);
     })
 });
 
@@ -145,4 +166,4 @@ resetFilterBtn.addEventListener("click", resetFilter);
 saveImgBtn.addEventListener("click", saveImage);
 fileInput.addEventListener("change", loadImage);
 chooseImgBtn.addEventListener("click", () => fileInput.click());
-boxPlay.addEventListener("click", runBoxes);
+boxPlay.addEventListener("click", parseBlocks);
