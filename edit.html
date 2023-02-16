@@ -65,10 +65,22 @@
             <div class="boxFilter">
                 <label class="title">Boxes</label>
                 <div class="boxes">
-                    <button id="brightnessBox">Brightness</button>
-                    <button id="saturationBox">Saturation</button>
-                    <button id="inversionBox">Inversion</button>
-                    <button id="grayscaleBox">Grayscale</button>
+                    <div class = "buttonContainer">
+                        <button id="brightnessBox">Brightness</button>
+                        <input class = "buttonInput" type="number" id="brightnessNumb" name="brightnessNumb" min="0" max="9999">
+                    </div>
+                    <div class = "buttonContainer">
+                        <button id="saturationBox">Saturation</button>
+                        <input class = "buttonInput" type="number" id="saturationNumb" name="saturationNumb" min="0" max="9999">
+                    </div>
+                    <div class = "buttonContainer">
+                        <button id="inversionBox">Inversion</button>
+                        <input class = "buttonInput" type="number" id="inversionNumb" name="inversionNumb" min="0" max="9999">
+                    </div>
+                    <div class = "buttonContainer">
+                        <button id="grayscaleBox">Grayscale</button>
+                        <input class = "buttonInput" type="number" id="grayscaleNumb" name="grayscaleNumb" min="0" max="9999">
+                    </div>
                 </div>
                 <!--<input type="range" value="100" min="0" max="200">-->
             </div>
