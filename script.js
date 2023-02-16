@@ -9,9 +9,31 @@ resetFilterBtn = document.querySelector(".reset-filter"),
 chooseImgBtn = document.querySelector(".choose-img"),
 saveImgBtn = document.querySelector(".save-img");
 
-const boxOrder = [];
 const boxes = document.querySelectorAll(".boxFilter button"),
 boxPlay = document.querySelector(".run");
+
+
+
+
+const boxOrder = [];
+  
+  var blockFunctions = {
+    "brightnessBox": function(){
+        brightness = 50;
+        console.log(brightness);
+    },
+    "saturationBox": function(){
+        saturation = 50;
+        console.log(saturation);
+    }
+  };
+  
+const parseBlocks = () => {
+    boxOrder.forEach(element => blockFunctions[element]());
+    applyFilter();
+};
+
+
 
 
 let brightness = "100", saturation = "100", inversion = "0", grayscale = "0";
@@ -31,27 +53,6 @@ const applyFilter = () => {
     previewImg.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
     previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
 }
-
-const BlockNames = Object.freeze({ 
-    FirstFunction: "brightnessBox", 
-    SecondFunction: "saturationBox" 
-  });
-  
-  
-  var blockFunctions = {
-    [BlockNames.FirstFunction]: function(){
-        brightness = 50;
-    },
-    [BlockNames.SecondFunction]: function(){
-        saturation = 50;
-    }
-  };
-  
-const parseBlocks = () => {
-    boxOrder.forEach(element => blockFunctions[element]());
-    applyFilter();
-};
-
 
 boxes.forEach(box => {
     box.addEventListener("click", () => {
