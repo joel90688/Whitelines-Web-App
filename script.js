@@ -17,16 +17,16 @@ boxPlay = document.querySelector(".run");
 
 const boxOrder = [];
   
-  var blockFunctions = {
-    "brightnessBox": function(){
-        brightness = 50;
+var blockFunctions = {
+"brightnessBox": function(){
+        brightness = parseInt(brightness) + 10;
         console.log(brightness);
     },
-    "saturationBox": function(){
-        saturation = 50;
+"saturationBox": function(){
+        saturation = parseInt(saturation) + 10;
         console.log(saturation);
     }
-  };
+};
   
 const parseBlocks = () => {
     boxOrder.forEach(element => blockFunctions[element]());
@@ -124,6 +124,7 @@ const resetFilter = () => {
     brightness = "100"; saturation = "100"; inversion = "0"; grayscale = "0";
     rotate = 0; flipHorizontal = 1; flipVertical = 1;
     filterOptions[0].click();
+    boxOrder = [];
     applyFilter();
 }
 
