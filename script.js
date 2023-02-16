@@ -150,15 +150,31 @@ const runBoxes = () => {
     const selectedBox = document.querySelector(".boxFilter .active");
 
     if(selectedBox.id === "brightnessBox") {
-        brightness = 50;
+        brightnessFunc();
     } else if(selectedBox.id === "saturationBox") {
-        saturation = 50;
+        saturationFunc();
     } else if(selectedBox.id === "inversionBox") {
-        inversion = 50;
+        inversionFunc();
     } else if(selectedBox.id === "grayscaleBox") {
-        grayscale = 50;
+        grayscaleFunc();
     }
     applyFilter();
+}
+
+const brightnessFunc = () => {
+    brightness = 50;
+}
+
+const saturationFunc = () => {
+    saturation = 50;
+}
+
+const inversionFunc = () => {
+    inversion = 50;
+}
+
+const grayscaleFunc = () => {
+    grayscale = 50;
 }
 
 filterSlider.addEventListener("input", updateFilter);
