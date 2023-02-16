@@ -15,17 +15,21 @@ boxPlay = document.querySelector(".run");
 
 
 
-const boxOrder = [];
+let boxOrder = [];
   
 var blockFunctions = {
-"brightnessBox": function(){
+    "brightnessBox": function(){
         brightness = parseInt(brightness) + 10;
-        console.log(brightness);
     },
-"saturationBox": function(){
+    "saturationBox": function(){
         saturation = parseInt(saturation) + 10;
-        console.log(saturation);
-    }
+    },
+    "inversionBox": function(){
+        inversion = parseInt(inversion) + 10;
+    },
+    "grayscaleBox": function(){
+        grayscale = parseInt(grayscale) + 10;
+    }   
 };
   
 const parseBlocks = () => {
