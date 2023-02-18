@@ -281,12 +281,41 @@ body{
   text-align: center;
 }
 
+.listContainer{
+  position: relative;
+  top: auto;
+  width: 500px;
+  padding: 15px 10px 10px;
+  margin: 0px 35px 0px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.listContainer h2{
+  margin-top: -8px;
+  font-size: 22px;
+  font-weight: 500;
+}
+.listContainer .listWrapper{
+  display: flex;
+  min-height: 100px;
+}
+.listWrapper{
+  width: 400px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+.listWrapper p{
+  font-size: 18px;
+  font-weight: 300;
+}
+
 
 @media screen and (max-width: 760px) {
   .container{
     padding: 25px;
   }
-  .container .wrapper{
+  .container .wrapper, .container .listWrapper{
     flex-wrap: wrap-reverse;
   }
   .wrapper .editor-panel{

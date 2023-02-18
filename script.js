@@ -64,6 +64,9 @@ const applyFilter = () => {
 
 boxes.forEach(box => {
     box.addEventListener("click", () => {
+        const boxToList = document.createElement("p");
+        boxToList.innerText = box.innerText;
+        document.getElementById("boxList").appendChild(boxToList);
         boxOrder.push(box.id);
         document.querySelector(".active").classList.remove("active");
         box.classList.add("active");
