@@ -19,6 +19,16 @@ background-position: center;
   align-items: center;
   justify-content: space-between;
 }
+.navigationbar-edit{
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  width: 85%;
+  margin: auto; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .logo{
   width: 120;
@@ -26,20 +36,22 @@ background-position: center;
   margin-left: 20;
 }
 
-.navigationbar ul li{
+.navigationbar ul li, .navigationbar-edit ul li{
   list-style: none;
   display: inline-block;
-  margin: 0 20px;
   position: relative;
 }
 
-.navigationbar ul li a{
+.navigationbar ul li a, .navigationbar-edit ul li a{
   text-decoration: none;
   color: rgb(231, 107, 5);
   text-transform: uppercase;
 }
+.navigationbar-edit ul li a{
+  color: white;
+}
 
-.navigationbar ul li::after{
+.navigationbar ul li::after, .navigationbar-edit ul li::after{
   content: '';
   height: 3px;
   width: 0;
@@ -49,16 +61,16 @@ background-position: center;
   bottom: -10px;
   transition: 0.5s;
 }
+.navigationbar-edit ul li::after{
+  background: white;
+}
 
-.navigationbar ul li:hover::after{
+.navigationbar ul li:hover::after, .navigationbar-edit ul li:hover::after{
   width: 100%;
 }
 
 .homebutton{
-  padding: 35px 0;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
+  position: absolute;
   left: 80%;
   margin-bottom: auto;
   bottom: auto;
@@ -244,8 +256,10 @@ body{
   justify-content: center;
 }
 .preview-img img{
-  max-width: 490px;
-  max-height: 490px;
+  min-width: 500px;
+  min-height: 400px;
+  max-width: 600px;
+  max-height: 600px;
   width: 100%;
   height: 100%;
   object-fit: contain;
