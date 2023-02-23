@@ -19,20 +19,20 @@ let boxOrder = [];
   
 var blockFunctions = {
     "brightnessBox": function(){
-        var incrementValue = document.getElementById("brightnessNumb").value;
-        brightness = parseInt(brightness) + parseInt(incrementValue);
+        var inputValue = document.getElementById("brightnessNumb").value;
+        brightness = parseInt(inputValue);
     },
     "saturationBox": function(){
-        var incrementValue = document.getElementById("saturationNumb").value;
-        saturation = parseInt(saturation) + parseInt(incrementValue);
+        var inputValue = document.getElementById("saturationNumb").value;
+        saturation = parseInt(inputValue);
     },
     "inversionBox": function(){
-        var incrementValue = document.getElementById("inversionNumb").value;
-        inversion = parseInt(inversion) + parseInt(incrementValue);
+        var inputValue = document.getElementById("inversionNumb").value;
+        inversion = parseInt(inputValue);
     },
     "grayscaleBox": function(){
-        var incrementValue = document.getElementById("grayscaleNumb").value;
-        grayscale = parseInt(grayscale) + parseInt(incrementValue);
+        var inputValue = document.getElementById("grayscaleNumb").value;
+        grayscale = parseInt(inputValue);
     }   
 };
   
