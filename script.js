@@ -9,7 +9,7 @@ resetFilterBtn = document.querySelector(".reset-filter"),
 chooseImgBtn = document.querySelector(".choose-img"),
 saveImgBtn = document.querySelector(".save-img");
 
-const boxes = document.querySelectorAll(".boxFilter button"),
+const boxes = document.querySelectorAll(".boxes button"),
 boxPlay = document.querySelector(".run");
 
 
@@ -65,7 +65,7 @@ const applyFilter = () => {
 boxes.forEach(box => {
     box.addEventListener("click", () => {
         const boxToList = document.createElement("p");
-        boxToList.innerText = box.innerText;
+        boxToList.innerText = box.innerText + " " + box.nextElementSibling.value + "%";
         document.getElementById("boxList").appendChild(boxToList);
         boxOrder.push(box.id);
         document.querySelector(".active").classList.remove("active");
