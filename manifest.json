@@ -1,0 +1,17 @@
+{
+    "lang": "en-us",
+    "name": "The Whitelines Progressive Web App",
+    "short_name": "Whitelines",
+    "description": "A note manipulation app",
+    "start_url": "/",
+    "background_color": "#2f3d58",
+    "theme_color": "#2f3d58",
+    "orientation": "any",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/logo.png",
+            "sizes": "512x512"
+        }
+    ]
+}
