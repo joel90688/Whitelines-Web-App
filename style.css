@@ -44,7 +44,7 @@ background-position: center;
 
 .navigationbar ul li a, .navigationbar-edit ul li a{
   text-decoration: none;
-  color: rgb(231, 107, 5);
+  color: #fe5000;
   text-transform: uppercase;
 }
 .navigationbar-edit ul li a{
@@ -115,7 +115,7 @@ body{
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background:rgb(231, 107, 5);
+  background: #fe5000;
 }
 
 #imgBox {
@@ -180,8 +180,8 @@ body{
 }
 .filter button.active, .boxFilter button.active{
   color: #fff;
-  border-color: rgb(231, 107, 5);
-  background: rgb(231, 107, 5);
+  border-color: #fe5000;
+  background: #fe5000;
 }
 .filter .slider{
   margin-top: 12px;
@@ -195,7 +195,7 @@ body{
 .filter .slider input{
   width: 100%;
   height: 5px;
-  accent-color: rgb(231, 107, 5);
+  accent-color: #fe5000;
 }
 .editor-panel .rotate{
   margin-top: 17px;
@@ -212,8 +212,8 @@ body{
 }
 .rotate .options button:active{
   color: #fff;
-  background: rgb(231, 107, 5); 
-  border-color: rgb(231, 107, 5);
+  background: #fe5000; 
+  border-color: #fe5000;
 }
 .controls button{
   padding: 11px 20px;
@@ -240,8 +240,8 @@ body{
 }
 .controls .save-img{
   margin-left: 5px;
-  background: rgb(231, 107, 5);
-  border: 1px solid rgb(231, 107, 5);
+  background: #fe5000;
+  border: 1px solid #fe5000;
 }
 .controls .row{
   margin-top: 20px;
@@ -288,12 +288,12 @@ body{
   padding: 5px;
   text-align: center;
   margin-bottom: 12px;
-  background:rgb(231, 107, 5);
+  background:#fe5000;
   color:rgb(255, 255, 255);
 }
 .boxes button:hover { 
   background: rgb(255, 255, 255);
-  color: rgb(231, 107, 5);
+  color: #fe5000;
 }
 .boxes button:active {
   background: rgb(239, 156, 156);
