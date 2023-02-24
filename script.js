@@ -16,28 +16,60 @@ boxPlay = document.querySelector(".run");
 
 
 let boxOrder = [];
+let waitForInput = false;
+let tempBoxOrder = [];
   
 var blockFunctions = {
+    "NOP": function(){
+    },
     "brightnessBox": function(){
         var incrementValue = document.getElementById("brightnessNumb").value;
         brightness = parseInt(brightness) + incrementValue;
+        console.log("bright");
     },
     "saturationBox": function(){
         var incrementValue = document.getElementById("saturationNumb").value;
         saturation = parseInt(saturation) + incrementValue;
+        console.log("sature");
     },
     "inversionBox": function(){
         var incrementValue = document.getElementById("inversionNumb").value;
         inversion = parseInt(inversion) + incrementValue;
+        console.log("inverse");
     },
     "grayscaleBox": function(){
         var incrementValue = document.getElementById("grayscaleNumb").value;
         grayscale = parseInt(grayscale) + incrementValue;
-    }   
+        console.log("gray");
+    },
+    "whenPressedBox": function(){
+        tempBoxOrder = [...boxOrder];
+        boxOrder = [];
+        console.log(boxOrder);
+        console.log("whenpressed box");
+        waitForInput = true;
+    }
+};
+
+previewImg.onmousedown = function() {
+    if(waitForInput){
+        boxOrder = [...tempBoxOrder];
+        tempBoxOrder = [];
+        waitForInput = false;
+        console.log("mouseDown");
+        parseBlocks();
+    }
 };
   
 const parseBlocks = () => {
-    boxOrder.forEach(element => blockFunctions[element]());
+    boxOrder.forEach(element => {
+        if(waitForInput){
+            return false;
+        }
+        let index = boxOrder.indexOf(element)
+        boxOrder[index] = "NOP";
+        blockFunctions[element]();
+    });
     applyFilter();
 };
 
@@ -168,6 +200,7 @@ const runBoxes = () => {
     } else if(selectedBox.id === "grayscaleBox") {
         grayscaleFunc();
     }
+    waitForInput = false;
     applyFilter();
 }
 
