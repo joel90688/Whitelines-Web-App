@@ -6,11 +6,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="homebutton">
+
+
+
+    <div class="navigationbar-edit">
         <ul>
-            <li><a href="./index.html">Home</a></li>
+        <li><a href="./index.html">Home</a></li>
         </ul>
     </div>
+
     <div class="container disable">
     <h2>Options</h2>
     <div class="wrapper">
@@ -42,6 +46,7 @@
             </div>
         </div>
     </div>
+
     <div class="controls">
         <button class="reset-filter">Reset Filters</button>
         <div class="row">
@@ -67,25 +72,24 @@
                 <div class="boxes">
                     <div class = "buttonContainer">
                         <button id="brightnessBox">Brightness</button>
-                        <input class = "buttonInput" type="number" id="brightnessNumb" name="brightnessNumb" min="0" max="9999">
+                        <input class = "buttonInput" type="number" id="brightnessNumb" name="brightnessNumb" min="0" max="9999" value="0">
                     </div>
                     <div class = "buttonContainer">
                         <button id="saturationBox">Saturation</button>
-                        <input class = "buttonInput" type="number" id="saturationNumb" name="saturationNumb" min="0" max="9999">
+                        <input class = "buttonInput" type="number" id="saturationNumb" name="saturationNumb" min="0" max="9999" value="0">
                     </div>
                     <div class = "buttonContainer">
                         <button id="inversionBox">Inversion</button>
-                        <input class = "buttonInput" type="number" id="inversionNumb" name="inversionNumb" min="0" max="9999">
+                        <input class = "buttonInput" type="number" id="inversionNumb" name="inversionNumb" min="0" max="9999" value="0">
                     </div>
                     <div class = "buttonContainer">
                         <button id="grayscaleBox">Grayscale</button>
-                        <input class = "buttonInput" type="number" id="grayscaleNumb" name="grayscaleNumb" min="0" max="9999">
+                        <input class = "buttonInput" type="number" id="grayscaleNumb" name="grayscaleNumb" min="0" max="9999" value="0">
                     </div>
                     <div class = "buttonContainer">
                         <button id="whenPressedBox">WhenPressed</button>
                     </div>
                 </div>
-                <!--<input type="range" value="100" min="0" max="200">-->
             </div>
             <div class="play">
                 <button class="run">Play</button>
@@ -94,6 +98,15 @@
     </div>
 </div>
 
+<div class="listContainer">
+    <h2>Selected Boxes</h2>
+    <div class="listWrapper" id="boxList">
+
+            <!--<div class="play">
+                <button class="run">Play</button>
+            </div>-->
+    </div>
+</div>
 <script src="script.js"></script>
 
   </body>

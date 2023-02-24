@@ -9,7 +9,7 @@ resetFilterBtn = document.querySelector(".reset-filter"),
 chooseImgBtn = document.querySelector(".choose-img"),
 saveImgBtn = document.querySelector(".save-img");
 
-const boxes = document.querySelectorAll(".boxFilter button"),
+const boxes = document.querySelectorAll(".boxes button"),
 boxPlay = document.querySelector(".run");
 
 
@@ -23,24 +23,20 @@ var blockFunctions = {
     "NOP": function(){
     },
     "brightnessBox": function(){
-        var incrementValue = document.getElementById("brightnessNumb").value;
-        brightness = parseInt(brightness) + incrementValue;
-        console.log("bright");
+        var inputValue = document.getElementById("brightnessNumb").value;
+        brightness = parseInt(inputValue);
     },
     "saturationBox": function(){
-        var incrementValue = document.getElementById("saturationNumb").value;
-        saturation = parseInt(saturation) + incrementValue;
-        console.log("sature");
+        var inputValue = document.getElementById("saturationNumb").value;
+        saturation = parseInt(inputValue);
     },
     "inversionBox": function(){
-        var incrementValue = document.getElementById("inversionNumb").value;
-        inversion = parseInt(inversion) + incrementValue;
-        console.log("inverse");
+        var inputValue = document.getElementById("inversionNumb").value;
+        inversion = parseInt(inputValue);
     },
     "grayscaleBox": function(){
-        var incrementValue = document.getElementById("grayscaleNumb").value;
-        grayscale = parseInt(grayscale) + incrementValue;
-        console.log("gray");
+        var inputValue = document.getElementById("grayscaleNumb").value;
+        grayscale = parseInt(inputValue);
     },
     "whenPressedBox": function(){
         tempBoxOrder = [...boxOrder];
@@ -96,9 +92,11 @@ const applyFilter = () => {
 
 boxes.forEach(box => {
     box.addEventListener("click", () => {
+        const boxToList = document.createElement("p");
+        boxToList.innerText = box.innerText + " " + box.nextElementSibling.value + "%";
+        document.getElementById("boxList").appendChild(boxToList);
         boxOrder.push(box.id);
         document.querySelector(".active").classList.remove("active");
-        box.classList.add("active");
         console.log(boxOrder);
     })
 });
