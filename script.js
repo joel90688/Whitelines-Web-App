@@ -14,7 +14,6 @@ boxPlay = document.querySelector(".run");
 
 
 
-
 let boxOrder = [];
 let waitForInput = false;
 let tempBoxOrder = [];
@@ -93,7 +92,7 @@ const applyFilter = () => {
 boxes.forEach(box => {
     box.addEventListener("click", () => {
         const boxToList = document.createElement("p");
-        boxToList.innerText = box.innerText + " " + box.nextElementSibling.value + "%";
+        boxToList.innerText = box.innerText + ": " + box.nextElementSibling.value + "%";
         document.getElementById("boxList").appendChild(boxToList);
         boxOrder.push(box.id);
         document.querySelector(".active").classList.remove("active");
