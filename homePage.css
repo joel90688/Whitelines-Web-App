@@ -16,20 +16,21 @@
 .navigationbar{
     width: 85%;
     margin: auto; 
-    padding: 35px 0;
+    padding: 1% 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 .logo{
-    width: 10%;
+    width: 8%;
     cursor: pointer;
     margin-left: 0%;
 }
 .navigationbar ul li{
+    float: right;
     list-style: none;
-    display: inline-block;
-    position: relative;
+    text-align: center;
+    border: 3px solid #cdcdcd;
 }
 
 .navigationbar ul li a{
@@ -55,10 +56,7 @@
 }
 
 body{
-    display: flex;
     padding: 10px;
-    align-items: center;
-    justify-content: center;
     background-image: url(images/whitelines.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -74,3 +72,6 @@ body{
     margin-right: 7%;
 }
 
+.imageContainer img {
+    margin: 0px;
+}
