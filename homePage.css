@@ -9,6 +9,8 @@
     height: 100vh;
     background-image: url(images/whitelines.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-position: center;
 }
 .navigationbar{
@@ -20,9 +22,9 @@
     justify-content: space-between;
   }
 .logo{
-    width: 120;
+    width: 10%;
     cursor: pointer;
-    margin-left: 20;
+    margin-left: 0%;
 }
 .navigationbar ul li{
     list-style: none;
@@ -40,8 +42,8 @@
 .navigationbar ul li::after{
     content: '';
     height: 3px;
-    width: 0;
-    background: #009688;
+    width: 0%;
+    background: #000000;
     position: absolute;
     left: 0;
     bottom: -10px;
@@ -55,9 +57,20 @@
 body{
     display: flex;
     padding: 10px;
-    min-height: 100vh;
     align-items: center;
     justify-content: center;
-    background: #fe5000;
+    background-image: url(images/whitelines.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.imageContainer {
+    content: "";
+    clear: both;
+    display: table;
+    margin-left: 7%;
+    margin-right: 7%;
 }
 

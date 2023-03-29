@@ -12,11 +12,14 @@
         <li><a href="./edit.html">Edit Image</a></li>
       </ul>
     </div>
+    <div class="imageContainer" id="imageList">
+    </div>
   </div>
+  <script src="homePage.js" defer></script>
   <script>
     if('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js', { scope: '/' });
     }
-    </script>    
+    </script> 
 </body>
 </html>                         
