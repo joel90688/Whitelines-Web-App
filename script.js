@@ -12,12 +12,10 @@ saveImgBtn = document.querySelector(".save-img");
 const boxes = document.querySelectorAll(".boxes button"),
 boxPlay = document.querySelector(".run");
 
-
-
 let boxOrder = [];
 let waitForInput = false;
 let tempBoxOrder = [];
-  
+
 var blockFunctions = {
     "NOP": function(){
     },

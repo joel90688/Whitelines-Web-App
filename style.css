@@ -2,22 +2,7 @@
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-}
-.banner{
-width: 100%;
-height: 100vh;
-background-image: url(images/whitelines.jpg);
-background-size: cover;
-background-position: center;
-}
-
-.navigationbar{
-  width: 85%;
-  margin: auto; 
-  padding: 35px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  box-sizing: border-box;
 }
 .navigationbar-edit{
   position: fixed;
@@ -28,12 +13,6 @@ background-position: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.logo{
-  width: 120;
-  cursor: pointer;
-  margin-left: 20;
 }
 
 .navigationbar ul li, .navigationbar-edit ul li{
@@ -104,11 +83,6 @@ background-position: center;
   width: 100%;
 }
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 body{
   display: flex;
   padding: 10px;

@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Whitelines</title>
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="homePage.css"> 
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
@@ -12,11 +12,17 @@
         <li><a href="./edit.html">Edit Image</a></li>
       </ul>
     </div>
+    <div class="imageContainer" id="imageList">
+      <div class="addImage">
+        <img src="images\Drawing.png">
+      </div>
+    </div>
   </div>
+  <script src="homePage.js" defer></script>
   <script>
     if('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js', { scope: '/' });
     }
-    </script>    
+    </script> 
 </body>
 </html>                         
