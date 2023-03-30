@@ -4,6 +4,7 @@
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Upload YEP</title>
   <link rel="stylesheet" href="style.css">
+  <script src="db.js"></script>
 </head>
 <body>
 
@@ -63,7 +64,7 @@
     <div class="controls">
         <button class="reset-filter">Reset Filters</button>
         <div class="row">
-            <input type="file" class="file-input" accept="image/*" hidden>
+            <input type="file" id="picture" class="file-input" accept="image/*" capture>
             <button class="choose-img">Choose Image</button>
             <button class="save-img">Save Image</button>
         </div>
@@ -72,7 +73,7 @@
 
 <div class="containerimage" id="imgBox">
   <div class="preview-img">
-    <img src="images/image-placeholder.png" alt="preview-img">
+    <img src="images/image-placeholder.png" alt="preview-img" id = "image">
   </div>
 </div>
 
@@ -102,6 +103,14 @@
                     <div class = "buttonContainer">
                         <button id="whenPressedBox">WhenPressed</button>
                     </div>
+
+                    <div class = "buttonContainer">
+                        <button id="next">Next Image</button>
+                    </div>
+                    <div class = "buttonContainer">
+                        <button id="prev">Previous Image</button>
+                    </div>
+
                 </div>
             </div>
             <div class="play">
@@ -109,6 +118,7 @@
             </div>
         </div>
     </div>
+
     <div class="listContainer">
         <h2>Selected Boxes</h2>
         <div class="listWrapper" id="boxList">
@@ -119,6 +129,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script src="script.js"></script>
