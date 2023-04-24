@@ -1,10 +1,43 @@
-<html>
+<html> 
 <head>
     <title>Whitelines</title>
+    <link rel="stylesheet" href="codemirror.css">
+    <script src="codemirror.js"></script>
+    
+
+    
+
     <link rel="stylesheet" href="homePage.css"> 
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
+
+  <textarea id="code-editor" name="code"></textarea>
+  <button id="execute-code">Execute Code</button>
+
+
+  <script>
+    const editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
+      mode: 'javascript', // Set the language mode.
+      lineNumbers: true, // Show line numbers.
+      theme: 'default' // Set the theme.
+    });
+
+    document.getElementById('execute-code').addEventListener('click', executeCode);
+
+    function executeCode() {
+      const code = editor.getValue(); // Get the code from the CodeMirror editor
+      try {
+      let result = Function(code); // Execute the code
+      result();
+      } catch (error) {
+        console.error('Error executing the code:', error);
+      }
+    }
+
+  </script>
+
+
   <div class="banner">
     <div class="navigationbar">
       <img src ="images\logo.png" class ="logo">
