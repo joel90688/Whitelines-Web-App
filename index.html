@@ -1,40 +1,55 @@
-<html> 
+<html>
 <head>
     <title>Whitelines</title>
     <link rel="stylesheet" href="codemirror.css">
     <script src="codemirror.js"></script>
-    
 
-    
-
-    <link rel="stylesheet" href="homePage.css"> 
+    <link rel="stylesheet" href="homePage.css">
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
 
-  <textarea id="code-editor" name="code"></textarea>
+  <textarea id="html-editor" name="html"></textarea>
+  <textarea id="css-editor" name="css"></textarea>
+  <textarea id="js-editor" name="js"></textarea>
   <button id="execute-code">Execute Code</button>
-
+  <div id="output"></div>
 
   <script>
-    const editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
-      mode: 'javascript', // Set the language mode.
-      lineNumbers: true, // Show line numbers.
-      theme: 'default' // Set the theme.
+    const htmlEditor = CodeMirror.fromTextArea(document.getElementById('html-editor'), {
+      mode: 'htmlmixed',
+      lineNumbers: true,
+      theme: 'default'
+    });
+
+    const cssEditor = CodeMirror.fromTextArea(document.getElementById('css-editor'), {
+      mode: 'css',
+      lineNumbers: true,
+      theme: 'default'
+    });
+
+    const jsEditor = CodeMirror.fromTextArea(document.getElementById('js-editor'), {
+      mode: 'javascript',
+      lineNumbers: true,
+      theme: 'default'
     });
 
     document.getElementById('execute-code').addEventListener('click', executeCode);
 
     function executeCode() {
-      const code = editor.getValue(); // Get the code from the CodeMirror editor
+      const html = htmlEditor.getValue();
+      const css = cssEditor.getValue();
+      const js = jsEditor.getValue();
+
+      const output = document.getElementById('output');
+      output.innerHTML = `<style>${css}</style>${html}`;
+
       try {
-      let result = Function(code); // Execute the code
-      result();
+        eval(js);
       } catch (error) {
         console.error('Error executing the code:', error);
       }
     }
-
   </script>
 
 
