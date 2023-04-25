@@ -83,3 +83,20 @@ body{
     opacity: 0.7;
   }
 
+.toggleButtons {
+    color: #000000;
+    background-color: #ffffff;
+    border-width: 1px;
+    border-radius: 2px;
+    padding: 1px;
+}
+
+#html {
+    color: #fe5000;
+    background-color: #000000;
+}
+
+.toggleButtons:active{
+    color: #fe5000;
+    background-color: #000000;
+}

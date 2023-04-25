@@ -8,11 +8,24 @@
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
-
-  <textarea id="html-editor" name="html"></textarea>
-  <textarea id="css-editor" name="css"></textarea>
-  <textarea id="js-editor" name="js"></textarea>
+  <div id="editorContainer" style="display: none">
+    <button class="toggleButtons" onclick="toggleHtml()" id="html">HTML</button>
+    <button class="toggleButtons" onclick="toggleCss()" id="css">CSS</button>
+    <button class="toggleButtons" onclick="toggleJs()" id="js">JS</button>
+    <div id="htmlEditorDiv">
+      <textarea id="html-editor" name="html"></textarea>
+    </div>
+    <div id="cssEditorDiv" style="display: none">
+      <textarea id="css-editor" name="css"></textarea>
+    </div>
+    <div id="jsEditorDiv" style="display: none">
+      <textarea id="js-editor" name="js"></textarea>
+    </div>
+  </div>
   <button id="execute-code">Execute Code</button>
+  
+  <button onclick="toggleEditor()">Toggle Editor</button>
+
   <div id="output"></div>
 
   <script>
@@ -49,6 +62,85 @@
       } catch (error) {
         console.error('Error executing the code:', error);
       }
+    }
+
+    function toggleEditor() {
+      var element = document.getElementById("editorContainer");
+      if (element.style.display === "none") {
+        element.style.display = "block";
+        editor.refresh();
+      } else {
+        element.style.display = "none";
+      }
+    }
+
+    function toggleHtml() {
+      var htmlEditorWindow = document.getElementById("htmlEditorDiv");
+      var cssEditorWindow = document.getElementById("cssEditorDiv");
+      var jsEditorWindow = document.getElementById("jsEditorDiv");
+
+      var htmlButton = document.getElementById("html");
+      var cssButton = document.getElementById("css");
+      var jsButton = document.getElementById("js");
+
+      htmlButton.style.color = "#fe5000";
+      htmlButton.style.backgroundColor = "#000000";
+      cssButton.style.color = "#000000";
+      cssButton.style.backgroundColor = "#ffffff";
+      jsButton.style.color = "#000000";
+      jsButton.style.backgroundColor = "#ffffff";
+
+      cssEditorWindow.style.display = "none";
+      jsEditorWindow.style.display = "none";
+      htmlEditorWindow.style.display = "block";
+
+      editor.refresh();
+    }
+
+    function toggleCss() {
+      var htmlEditorWindow = document.getElementById("htmlEditorDiv");
+      var cssEditorWindow = document.getElementById("cssEditorDiv");
+      var jsEditorWindow = document.getElementById("jsEditorDiv");
+
+      var htmlButton = document.getElementById("html");
+      var cssButton = document.getElementById("css");
+      var jsButton = document.getElementById("js");
+
+      cssButton.style.color = "#fe5000";
+      cssButton.style.backgroundColor = "#000000";
+      htmlButton.style.color = "#000000";
+      htmlButton.style.backgroundColor = "#ffffff";
+      jsButton.style.color = "#000000";
+      jsButton.style.backgroundColor = "#ffffff";
+
+      htmlEditorWindow.style.display = "none";
+      cssEditorWindow.style.display = "block";
+      jsEditorWindow.style.display = "none";
+
+      editor.refresh();
+    }
+
+    function toggleJs() {
+      var htmlEditorWindow = document.getElementById("htmlEditorDiv");
+      var cssEditorWindow = document.getElementById("cssEditorDiv");
+      var jsEditorWindow = document.getElementById("jsEditorDiv");
+
+      var htmlButton = document.getElementById("html");
+      var cssButton = document.getElementById("css");
+      var jsButton = document.getElementById("js");
+
+      jsButton.style.color = "#fe5000";
+      jsButton.style.backgroundColor = "#000000";
+      cssButton.style.color = "#000000";
+      cssButton.style.backgroundColor = "#ffffff";
+      htmlButton.style.color = "#000000";
+      htmlButton.style.backgroundColor = "#ffffff";
+      
+      htmlEditorWindow.style.display = "none";
+      cssEditorWindow.style.display = "none";
+      jsEditorWindow.style.display = "block";
+
+      editor.refresh();
     }
   </script>
 
