@@ -28,6 +28,20 @@
 
   <div id="output"></div>
 
+  <div class="banner">
+    <div class="navigationbar">
+      <img src ="images\logo.png" class ="logo">
+      <ul>
+        <li><a href="./edit.html">Edit Image</a></li>
+      </ul>
+    </div>
+    <div class="imageContainer" id="imageList">
+      <div class="addImage">
+        <img src="images\Drawing.png">
+      </div>
+    </div>
+  </div>
+
   <script>
     const htmlEditor = CodeMirror.fromTextArea(document.getElementById('html-editor'), {
       mode: 'htmlmixed',
@@ -65,25 +79,12 @@
     }
   </script>
 
-
-  <div class="banner">
-    <div class="navigationbar">
-      <img src ="images\logo.png" class ="logo">
-      <ul>
-        <li><a href="./edit.html">Edit Image</a></li>
-      </ul>
-    </div>
-    <div class="imageContainer" id="imageList">
-      <div class="addImage">
-        <img src="images\Drawing.png">
-      </div>
-    </div>
-  </div>
   <script src="homePage.js" defer></script>
   <script>
     if('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js', { scope: '/' });
     }
     </script> 
+
 </body>
 </html>                         
