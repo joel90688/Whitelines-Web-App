@@ -17,25 +17,40 @@ images.forEach(image => {
     document.getElementById("imageList").appendChild(img);
 });
 
+const element = document.getElementById("editorContainer");
+const toggleButton = document.getElementById("toggleEditorButton");
+
+const htmlEditorWindow = document.getElementById("htmlEditorDiv");
+const cssEditorWindow = document.getElementById("cssEditorDiv");
+const jsEditorWindow = document.getElementById("jsEditorDiv");
+
+const htmlButton = document.getElementById("html");
+const cssButton = document.getElementById("css");
+const jsButton = document.getElementById("js");
+
+const overlay = document.getElementById("overlay");
+
+htmlButton.classList.add('ActiveClass');
+cssButton.classList.add('ActiveClass');
+jsButton.classList.add('ActiveClass');
+
+htmlButton.classList.add('HoverClass');
+cssButton.classList.add('HoverClass');
+jsButton.classList.add('HoverClass');
+
 function toggleEditor() {
-    var element = document.getElementById("editorContainer");
-    if (element.style.display === "none") {
-      element.style.display = "block";
-      editor.refresh();
+    if (element.style.display == "none") {
+        toggleButton.style.display = "none";
+        overlay.style.display = "block";
+        element.style.display = "block";
     } else {
-      element.style.display = "none";
+        overlay.style.display = "none";
+        toggleButton.style.display = "block";
+        element.style.display = "none";
     }
   }
 
   function toggleHtml() {
-    var htmlEditorWindow = document.getElementById("htmlEditorDiv");
-    var cssEditorWindow = document.getElementById("cssEditorDiv");
-    var jsEditorWindow = document.getElementById("jsEditorDiv");
-
-    var htmlButton = document.getElementById("html");
-    var cssButton = document.getElementById("css");
-    var jsButton = document.getElementById("js");
-
     htmlButton.style.color = "#fe5000";
     htmlButton.style.backgroundColor = "#000000";
     cssButton.style.color = "#000000";
@@ -43,22 +58,20 @@ function toggleEditor() {
     jsButton.style.color = "#000000";
     jsButton.style.backgroundColor = "#ffffff";
 
+    htmlButton.classList.remove('HoverClass');
+    cssButton.classList.add('HoverClass');
+    jsButton.classList.add('HoverClass');
+    
+    htmlButton.classList.remove('ActiveClass');
+    cssButton.classList.add('ActiveClass');
+    jsButton.classList.add('ActiveClass');
+
     cssEditorWindow.style.display = "none";
     jsEditorWindow.style.display = "none";
     htmlEditorWindow.style.display = "block";
-
-    editor.refresh();
   }
 
   function toggleCss() {
-    var htmlEditorWindow = document.getElementById("htmlEditorDiv");
-    var cssEditorWindow = document.getElementById("cssEditorDiv");
-    var jsEditorWindow = document.getElementById("jsEditorDiv");
-
-    var htmlButton = document.getElementById("html");
-    var cssButton = document.getElementById("css");
-    var jsButton = document.getElementById("js");
-
     cssButton.style.color = "#fe5000";
     cssButton.style.backgroundColor = "#000000";
     htmlButton.style.color = "#000000";
@@ -66,32 +79,40 @@ function toggleEditor() {
     jsButton.style.color = "#000000";
     jsButton.style.backgroundColor = "#ffffff";
 
+    htmlButton.classList.add('HoverClass');
+    cssButton.classList.remove('HoverClass');
+    jsButton.classList.add('HoverClass');
+
+    htmlButton.classList.add('ActiveClass');
+    cssButton.classList.remove('ActiveClass');
+    jsButton.classList.add('ActiveClass');
+
     htmlEditorWindow.style.display = "none";
     cssEditorWindow.style.display = "block";
     jsEditorWindow.style.display = "none";
-
-    editor.refresh();
   }
 
   function toggleJs() {
-    var htmlEditorWindow = document.getElementById("htmlEditorDiv");
-    var cssEditorWindow = document.getElementById("cssEditorDiv");
-    var jsEditorWindow = document.getElementById("jsEditorDiv");
-
-    var htmlButton = document.getElementById("html");
-    var cssButton = document.getElementById("css");
-    var jsButton = document.getElementById("js");
-
     jsButton.style.color = "#fe5000";
     jsButton.style.backgroundColor = "#000000";
     cssButton.style.color = "#000000";
     cssButton.style.backgroundColor = "#ffffff";
     htmlButton.style.color = "#000000";
     htmlButton.style.backgroundColor = "#ffffff";
+
+    htmlButton.classList.add('HoverClass');
+    cssButton.classList.add('HoverClass');
+    jsButton.classList.remove('HoverClass');
+
+    htmlButton.classList.add('ActiveClass');
+    cssButton.classList.add('ActiveClass');
+    jsButton.classList.remove('ActiveClass');
     
     htmlEditorWindow.style.display = "none";
     cssEditorWindow.style.display = "none";
     jsEditorWindow.style.display = "block";
-
-    editor.refresh();
   }
+
+  overlay.addEventListener("click", function() {
+    toggleEditor();
+  });

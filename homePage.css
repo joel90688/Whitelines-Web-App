@@ -86,9 +86,11 @@ body{
 .toggleButtons {
     color: #000000;
     background-color: #ffffff;
-    border-width: 1px;
-    border-radius: 2px;
+    border-width: 5%;
+    border-radius: 10%;
     padding: 1px;
+    width: 3vw;
+    height: 3vh;
 }
 
 #html {
@@ -96,7 +98,53 @@ body{
     background-color: #000000;
 }
 
+.togglebuttons:hover{
+    color: #ffffff;
+    background-color: #fe5000;
+}
+
 .toggleButtons:active{
-    color: #fe5000;
-    background-color: #000000;
+    color: #ffffff;
+    background-color: #ff0000;
+    box-shadow: 1px 1px #000000;
+    transform: translateY(2px);
+}
+
+.ActiveClass:active {color: #ffffff !important; background-color: #fe5000 !important; box-shadow: 1px 1px #000000 !important; transform: translateY(2px) !important;}
+.HoverClass:hover {color: #ffffff !important; background-color: #fe5000 !important;}
+
+#editorContainer {
+    width: 25vw;
+    position: fixed;
+    z-index: 2;
+}
+
+#overlay {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+}
+
+#execute-code {
+    background-color: #8b2c00;
+    color: #ffffff;
+    border-radius: 10px;
+    width: 4vw;
+    height: 2vh;
+}
+
+#toggleEditorButton {
+    background-color: #fe5000;
+    color: #ffffff;
+    border-radius: 10px;
+    position: fixed;
+    top: 1%;
+    left: 1%;
+    width: 4%;
+    height: 4%;
 }

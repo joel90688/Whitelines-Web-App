@@ -21,10 +21,12 @@
     <div id="jsEditorDiv" style="display: none">
       <textarea id="js-editor" name="js"></textarea>
     </div>
+    <button id="execute-code">Execute Code</button>
   </div>
-  <button id="execute-code">Execute Code</button>
+
+  <div id="overlay"></div>
   
-  <button onclick="toggleEditor()">Toggle Editor</button>
+  <button id="toggleEditorButton" style="display: block" onclick="toggleEditor()">Toggle Editor</button>
 
   <div id="output"></div>
 
