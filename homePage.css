@@ -135,7 +135,14 @@ body{
     color: #ffffff;
     border-radius: 10px;
     width: 4vw;
-    height: 2vh;
+    height: 2.5vh;
+    margin-top: .3vh;
+}
+#execute-code:hover {
+    background-color: #ff3535;
+}
+#execute-code:active {
+    background-color: #d20000;
 }
 
 #toggleEditorButton {
