@@ -91,6 +91,7 @@ body{
     padding: 1px;
     width: 3vw;
     height: 3vh;
+    cursor: pointer;
 }
 
 #html {
@@ -114,9 +115,13 @@ body{
 .HoverClass:hover {color: #ffffff !important; background-color: #fe5000 !important;}
 
 #editorContainer {
-    width: 25vw;
+    display: block;
+    width: 0px; /* 25vw */
     position: fixed;
     z-index: 2;
+    transition: width 0.4s ease;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 #overlay {

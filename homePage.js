@@ -17,7 +17,7 @@ images.forEach(image => {
     document.getElementById("imageList").appendChild(img);
 });
 
-const element = document.getElementById("editorContainer");
+const editorWindow = document.getElementById("editorContainer");
 const toggleButton = document.getElementById("toggleEditorButton");
 
 const htmlEditorWindow = document.getElementById("htmlEditorDiv");
@@ -38,15 +38,19 @@ htmlButton.classList.add('HoverClass');
 cssButton.classList.add('HoverClass');
 jsButton.classList.add('HoverClass');
 
+let editorOpen = false;
+
 function toggleEditor() {
-    if (element.style.display == "none") {
-        toggleButton.style.display = "none";
-        overlay.style.display = "block";
-        element.style.display = "block";
-    } else {
+    if (editorOpen) {
+        editorOpen = false;
         overlay.style.display = "none";
         toggleButton.style.display = "block";
-        element.style.display = "none";
+        editorWindow.style.width = "0px";
+    } else {
+        editorOpen = true;
+        toggleButton.style.display = "none";
+        overlay.style.display = "block";
+        editorWindow.style.width = "40vw";
     }
   }
 
@@ -61,7 +65,7 @@ function toggleEditor() {
     htmlButton.classList.remove('HoverClass');
     cssButton.classList.add('HoverClass');
     jsButton.classList.add('HoverClass');
-    
+
     htmlButton.classList.remove('ActiveClass');
     cssButton.classList.add('ActiveClass');
     jsButton.classList.add('ActiveClass');
