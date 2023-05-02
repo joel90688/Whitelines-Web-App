@@ -159,4 +159,9 @@ body{
     left: 1%;
     width: 4%;
     height: 4%;
+    cursor: pointer;
+}
+
+#toggleEditorButton:hover {
+    background-color: #ae542b;
 }
