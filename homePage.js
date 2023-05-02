@@ -10,12 +10,18 @@ var images = [
 {number: 9, link: "images/bg8.png"}];
 
 images.forEach(image => {
-    const img = document.createElement("img");
-    img.src = image.link;
-    img.id = "image" + image.number;
-    img.style.cssText = 'float: left;width: 25%;padding: 5px';
-    img.class = "column";
-    document.getElementById("imageList").appendChild(img);
+  const anchor = document.createElement("a");
+  anchor.href = "edit.html";
+  anchor.style.cssText = 'float: left;width: 25%;padding: 5px';
+
+  const img = document.createElement("img");
+  img.style.cssText = 'float: left;width: 100%;padding: 0px';
+  img.src = image.link;
+  img.id = "image" + image.number;
+  img.class = "column";
+
+  anchor.appendChild(img);
+  document.getElementById("imageList").appendChild(anchor);
 });
 
 // initialize CodeMirror editor
@@ -68,9 +74,11 @@ overlay.addEventListener('click', function () {
   }
 })
 
+document.getElementById('saveButton').addEventListener('click', () => {
+  eval(htmlEditor.getValue());
+});
 
-
-//martinkod
+/* //martinkod
 htmlEditor.getDoc().setValue(document.documentElement.outerHTML);
 
 document.getElementById('htmlButton').addEventListener('click', () => {
@@ -100,4 +108,4 @@ function updatePageFromFullHtml() {
 
   // Trigger the "Refresh Code" button event to update the textarea
   document.getElementById('htmlButton').click();
-}
+} */

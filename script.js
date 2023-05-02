@@ -18,6 +18,61 @@ let waitForInput = false;
 let tempBoxOrder = [];
 
 
+var jsEditor = CodeMirror.fromTextArea(document.getElementById("jjscode"), {
+    lineNumbers: true,
+    mode: "javascript",
+  });
+  
+  var htmlEditor = CodeMirror.fromTextArea(document.getElementById("hhtmlcode"), {
+    lineNumbers: true,
+    mode: "html"
+  });
+  
+  htmlEditor.setSize("100%", "100%");
+  
+  var cssEditor = CodeMirror.fromTextArea(document.getElementById("csscode"), {
+    lineNumbers: true,
+    mode: "css"
+  });
+  
+  //kod från video med collapsable grej
+  const hamburger = document.getElementById('hamburger')
+  const sidebar = document.getElementById('sidebar')
+  const overlay = document.getElementById('overlay')
+  
+  let menuOpen = false
+  
+  function openMenu() {
+    menuOpen = true
+    overlay.style.display = 'block'
+    sidebar.style.width = '50vw'
+  }
+  
+  function closeMenu() {
+    menuOpen = false
+    overlay.style.display = 'none'
+    sidebar.style.display = 'block'
+    sidebar.style.width = '0px'
+  }
+  
+  hamburger.addEventListener('click', function () {
+    if (!menuOpen) {
+      openMenu()
+    }
+  })
+  
+  overlay.addEventListener('click', function () {
+    if (menuOpen) {
+      closeMenu()
+    }
+  })
+  
+  document.getElementById('saveButton').addEventListener('click', () => {
+    eval(htmlEditor.getValue());
+  });
+
+
+
 var blockFunctions = {
     "NOP": function(){
     },

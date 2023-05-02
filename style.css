@@ -423,3 +423,84 @@ body{
     margin-left: 0px;
   }
 }
+
+
+#hamburger {
+  fill: white;
+  height: 38px;
+  width: 38px;
+  margin: 10px;
+  cursor: pointer;
+  position: fixed;
+}
+
+#sidebar {
+  width: 0px;
+  height: 100vh;
+  background-color: rgb(247, 247, 247);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  white-space: nowrap;
+}
+
+.sidebar-item {
+  height: 20vh;
+  max-width: 50vw;
+  color: black;
+  align-items: middle;
+  cursor: pointer;
+}
+
+#overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: none;
+}
+
+#hhtmlEditorContainer {
+  height: 85vh;
+}
+
+#jsEditorContainer{
+  display: none;
+}
+
+#cssEditorContainer{
+  display: none;
+}
+
+.sidebar-button {
+display: inline-block;
+background-color: #c7672b;
+color: #fff;
+border: none;
+border-radius: 0px;
+padding: 10px 20px;
+font-size: 16px;
+cursor: pointer;
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+transition: all 0.3s ease-in-out;
+}
+
+.sidebar-button:hover {
+background-color: #efbe6f;
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-button:active {
+transform: translateY(1px);
+box-shadow: none;
+}
+
+#savebutton{
+background-color: #4da75c;
+}
