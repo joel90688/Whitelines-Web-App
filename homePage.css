@@ -93,7 +93,7 @@ body{
   }
   
   #sidebar {
-    width: 50vw;
+    width: 0px;
     height: 100vh;
     background-color: rgb(247, 247, 247);
     position: fixed;
@@ -101,9 +101,8 @@ body{
     left: 0;
     z-index: 2;
     overflow: hidden;
-    /*transition: width 0.3s ease;*/
+    transition: width 0.3s ease;
     white-space: nowrap;
-    display: none;
   }
   
   .sidebar-item {

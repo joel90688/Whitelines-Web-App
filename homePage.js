@@ -45,16 +45,15 @@ let menuOpen = false
 
 function openMenu() {
   menuOpen = true
-  sidebar.style.display = 'block'
   overlay.style.display = 'block'
-  /*sidebar.style.width = '50vw'*/
+  sidebar.style.width = '50vw'
 }
 
 function closeMenu() {
   menuOpen = false
   overlay.style.display = 'none'
   sidebar.style.display = 'block'
-  /*sidebar.style.width = '0px'*/
+  sidebar.style.width = '0px'
 }
 
 hamburger.addEventListener('click', function () {
