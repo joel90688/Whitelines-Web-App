@@ -1,13 +1,168 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Whitelines</title>
-    <link rel="stylesheet" href="homePage.css"> 
-    <link rel="manifest" href="/manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whitelines</title>
+  <link rel="stylesheet" href="codemirror.css">
+  <script src="codemirror.js"></script>
+  <link rel="stylesheet" href="homePage.css">
+  <link rel="manifest" href="/manifest.json">
+  <style>
+    #saves-list {
+      display: none;
+    }
+    
+    .show {
+      display: block;
+    }
+  </style>
 </head>
 <body>
+  <div id="content-wrapper">
+    <div id="page-content">
+      <textarea id="full-html-code" style="width: 100%; height: 300px;"></textarea>
+    </div>
+    <button id="refresh-code">Refresh Code</button>
+    <button id="save-changes">Save Changes</button>
+    <button id="load-temp-save">Load Temporary Save</button>
+    <input type="number" id="save-index" placeholder="Save index" min="0">
+    <button id="load-specific-save">Load Specific Save</button>
+    <h2>Saved Versions:</h2>
+    <ul id="saves-list"></ul>
+    <button id="toggle-saves">Show Saves</button>
+  </div>
+
+
+  <script>
+    const fullHtmlCode = document.getElementById('full-html-code');
+    fullHtmlCode.value = document.documentElement.outerHTML;
+
+    document.getElementById('refresh-code').addEventListener('click', () => {
+      fullHtmlCode.value = document.documentElement.outerHTML;
+    });
+
+    function displaySavesList() {
+      const savesList = document.getElementById('saves-list');
+      savesList.innerHTML = '';
+      const savesArray = JSON.parse(localStorage.getItem('multipleSaves')) || [];
+      savesArray.forEach((save, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Save ${index}: ${save.slice(0, 50)}...`;
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', () => {
+          deleteSave(index);
+          displaySavesList();
+        });
+        listItem.appendChild(deleteButton);
+
+        const loadButton = document.createElement('button');
+        loadButton.textContent = 'Load';
+        loadButton.addEventListener('click', () => {
+          fullHtmlCode.value = save;
+          updatePageFromFullHtml(fullHtmlCode.value);
+        });
+
+        listItem.appendChild(loadButton);
+
+        savesList.appendChild(listItem);
+      });
+    }
+
+    function deleteSave(index) {
+      const savesArray = JSON.parse(localStorage.getItem('multipleSaves')) || [];
+      if (savesArray[index]) {
+        savesArray.splice(index, 1);
+        localStorage.setItem('multipleSaves', JSON.stringify(savesArray));
+      } else {
+        alert('No save found for the specified index.');
+      }
+    }
+
+    document.getElementById('save-changes').addEventListener('click', () => {
+      updatePageFromFullHtml(fullHtmlCode.value);
+      let savesArray = JSON.parse(localStorage.getItem('multipleSaves')) || [];
+      savesArray.push(fullHtmlCode.value);
+      localStorage.setItem('multipleSaves', JSON.stringify(savesArray));
+      displaySavesList();
+    });
+
+    document.getElementById('load-temp-save').addEventListener('click', () => {
+      const tempSave = localStorage.getItem('temporarySave');
+      if (tempSave) {
+        fullHtmlCode.value = tempSave;
+        updatePageFromFullHtml();
+      } else {
+        alert('No temporary save found.');
+}
+});
+document.getElementById('load-specific-save').addEventListener('click', () => {
+  
+
+  const savesArray = JSON.parse(localStorage.getItem('multipleSaves')) || [];
+  const saveIndex = parseInt(document.getElementById('save-index').value);
+  
+  if (savesArray[saveIndex]) {
+    fullHtmlCode.value = savesArray[saveIndex];
+    updatePageFromFullHtml(fullHtmlCode.value);
+  } else {
+    alert('No save found for the specified index.');
+  }
+  
+  
+});
+
+function updatePageFromFullHtml() {
+  const fullHtml = document.getElementById('full-html-code').value;
+  const tempElement = document.createElement('div');
+  tempElement.innerHTML = fullHtml;
+  const fullHtmlContent = fullHtml;
+  const pageContent = document.getElementById('page-content');
+  pageContent.innerHTML = tempElement.innerHTML;
+
+  // Event listeners and other necessary code updated to use new elements inside the "content-wrapper"
+  const newFullHtmlCode = document.getElementById('full-html-code');
+  newFullHtmlCode.value = fullHtmlContent;
+  document.getElementById('refresh-code').addEventListener('click', () => {
+    newFullHtmlCode.value = document.documentElement.outerHTML;
+  });
+
+  document.getElementById('save-changes').addEventListener('click', () => {
+    updatePageFromFullHtml();
+    let savesArray = JSON.parse(localStorage.getItem('multipleSaves')) || [];
+    savesArray.push(newFullHtmlCode.value);
+    localStorage.setItem('multipleSaves', JSON.stringify(savesArray));
+    displaySavesList();
+  });
+
+  document.getElementById('refresh-code').click();
+}
+
+window.onload = function() {
+  displaySavesList();
+  document.getElementById('refresh-code').click();
+};
+
+const toggleSavesButton = document.getElementById('toggle-saves');
+const savesList = document.getElementById('saves-list');
+
+toggleSavesButton.addEventListener('click', () => {
+  console.log("Toggle Saves button clicked!");
+  savesList.style.display = (savesList.style.display === 'none') ? 'block' : 'none';
+  toggleSavesButton.textContent = (savesList.style.display === 'none') ? 'Show Saves' : 'Hide Saves';
+  displaySavesList();
+});
+
+window.onload = function() {
+  displaySavesList();
+  savesList.style.display = 'block'; // Add this line
+  document.getElementById('refresh-code').click();
+};
+</script>
   <div class="banner">
     <div class="navigationbar">
-      <img src ="images\logo.png" class ="logo">
+      <img src="images\logo.png" class="logo">
       <ul>
         <li><a href="./edit.html">Edit Image</a></li>
       </ul>
@@ -20,9 +175,9 @@
   </div>
   <script src="homePage.js" defer></script>
   <script>
-    if('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js', { scope: '/' });
     }
-    </script> 
+  </script>
 </body>
-</html>                         
+</html>
