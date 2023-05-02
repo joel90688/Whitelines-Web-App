@@ -1,57 +1,43 @@
-<html>
+<html> 
 <head>
     <title>Whitelines</title>
     <link rel="stylesheet" href="codemirror.css">
     <script src="codemirror.js"></script>
-
-    <link rel="stylesheet" href="homePage.css">
-    <link rel="manifest" href="/manifest.json">
+  
+    <link rel="stylesheet" href="homePage.css"> 
 </head>
 <body>
-
-  <textarea id="html-editor" name="html"></textarea>
-  <textarea id="css-editor" name="css"></textarea>
-  <textarea id="js-editor" name="js"></textarea>
-  <button id="execute-code">Execute Code</button>
-  <div id="output"></div>
-
-  <script>
-    const htmlEditor = CodeMirror.fromTextArea(document.getElementById('html-editor'), {
-      mode: 'htmlmixed',
-      lineNumbers: true,
-      theme: 'default'
-    });
-
-    const cssEditor = CodeMirror.fromTextArea(document.getElementById('css-editor'), {
-      mode: 'css',
-      lineNumbers: true,
-      theme: 'default'
-    });
-
-    const jsEditor = CodeMirror.fromTextArea(document.getElementById('js-editor'), {
-      mode: 'javascript',
-      lineNumbers: true,
-      theme: 'default'
-    });
-
-    document.getElementById('execute-code').addEventListener('click', executeCode);
-
-    function executeCode() {
-      const html = htmlEditor.getValue();
-      const css = cssEditor.getValue();
-      const js = jsEditor.getValue();
-
-      const output = document.getElementById('output');
-      output.innerHTML = `<style>${css}</style>${html}`;
-
-      try {
-        eval(js);
-      } catch (error) {
-        console.error('Error executing the code:', error);
-      }
-    }
-  </script>
-
+  <body>
+    <main>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        id="hamburger"
+      >
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+      </svg>
+      <div id="overlay"></div>
+      <div id="sidebar">
+        <button class="sidebar-button" id="htmlButton" type="button">HTML</button>
+        <button class="sidebar-button" id="javascriptButton" type="button">JavaScript</button>
+        <button class="sidebar-button" id="cssButton" type="button">HTML</button>
+        <div class="sidebar-item" id="htmlEditorContainer">
+          <textarea id="htmlcode"></textarea>
+        </div>
+        <div class="sidebar-item" id="jsEditorContainer">
+          <textarea id="jscode"></textarea>
+        </div>
+        <div class="sidebar-item" id="cssEditorContainer">
+          <textarea id="csscode"></textarea>
+        </div>
+        <button class="sidebar-button" id="saveButton" type="button">save</button>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
 
   <div class="banner">
     <div class="navigationbar">
@@ -73,4 +59,4 @@
     }
     </script> 
 </body>
-</html>                         
+</html> 
