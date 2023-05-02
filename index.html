@@ -48,20 +48,27 @@
     const htmlEditor = CodeMirror.fromTextArea(document.getElementById('html-editor'), {
       mode: 'htmlmixed',
       lineNumbers: true,
-      theme: 'default'
+      theme: 'default',
+      intendUnit: 2
     });
 
     const cssEditor = CodeMirror.fromTextArea(document.getElementById('css-editor'), {
       mode: 'css',
       lineNumbers: true,
-      theme: 'default'
+      theme: 'default',
+      intendUnit: 2
     });
 
     const jsEditor = CodeMirror.fromTextArea(document.getElementById('js-editor'), {
       mode: 'javascript',
       lineNumbers: true,
-      theme: 'default'
+      theme: 'default',
+      intendUnit: 2
     });
+
+    htmlEditor.setSize(null, '90vh');
+    cssEditor.setSize(null, '90vh');
+    jsEditor.setSize(null, '90vh');
 
     document.getElementById('execute-code').addEventListener('click', executeCode);
 
