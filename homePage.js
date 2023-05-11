@@ -10,19 +10,19 @@ var images = [
 {number: 9, link: "images/bg8.png"}];
 
 images.forEach(image => {
-  const anchor = document.createElement("a");
-  anchor.href = "edit.html";
-  anchor.style.cssText = 'float: left;width: 25%;padding: 5px';
-
   const img = document.createElement("img");
-  img.style.cssText = 'float: left;width: 100%;padding: 0px';
+  img.style.cssText = 'float: left;width: 25%;padding: 5px;cursor: pointer';
   img.src = image.link;
   img.id = "image" + image.number;
   img.class = "column";
+  document.getElementById("imageList").appendChild(img);
 
-  anchor.appendChild(img);
-  document.getElementById("imageList").appendChild(anchor);
+  img.addEventListener('click', function () {
+    window.location.href = "edit.html";
+    localStorage.setItem("picture", img.src);
+  })
 });
+
 
 // initialize CodeMirror editor
 var jsEditor = CodeMirror.fromTextArea(document.getElementById("jscode"), {
