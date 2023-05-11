@@ -25,22 +25,18 @@ images.forEach(image => {
 });
 
 // initialize CodeMirror editor
-var jsEditor = CodeMirror.fromTextArea(document.getElementById("jscode"), {
+/* var jsEditor = CodeMirror.fromTextArea(document.getElementById("jscode"), {
   lineNumbers: true,
   mode: "javascript",
-});
+}); */
 
-var htmlEditor = CodeMirror.fromTextArea(document.getElementById("htmlcode"), {
+var jsEditor = CodeMirror.fromTextArea(document.getElementById("jscode"), {
   lineNumbers: true,
   mode: "html"
 });
 
-htmlEditor.setSize("100%", "100%");
+jsEditor.setSize("100%", "100%");
 
-var cssEditor = CodeMirror.fromTextArea(document.getElementById("csscode"), {
-  lineNumbers: true,
-  mode: "css"
-});
 
 //kod från video med collapsable grej
 const hamburger = document.getElementById('hamburger')
@@ -75,7 +71,7 @@ overlay.addEventListener('click', function () {
 })
 
 document.getElementById('saveButton').addEventListener('click', () => {
-  eval(htmlEditor.getValue());
+  eval(jsEditor.getValue());
 });
 
 /* //martinkod
