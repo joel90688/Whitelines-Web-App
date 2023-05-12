@@ -9,13 +9,9 @@ resetFilterBtn = document.querySelector(".reset-filter"),
 chooseImgBtn = document.querySelector(".choose-img"),
 saveImgBtn = document.querySelector(".save-img");
 
-const boxes = document.querySelectorAll(".boxes button"),
-boxPlay = document.querySelector(".run");
+previewImg.src = localStorage.getItem("picture");
 
-
-let boxOrder = [];
-let waitForInput = false;
-let tempBoxOrder = [];
+let waitForInput = true;
 
 
 var jsEditor = CodeMirror.fromTextArea(document.getElementById("jjscode"), {
@@ -34,97 +30,13 @@ var jsEditor = CodeMirror.fromTextArea(document.getElementById("jjscode"), {
     lineNumbers: true,
     mode: "css"
   });
-  
-  //kod från video med collapsable grej
-  const hamburger = document.getElementById('hamburger')
-  const sidebar = document.getElementById('sidebar')
-  const overlay = document.getElementById('overlay')
-  
-  let menuOpen = false
-  
-  function openMenu() {
-    menuOpen = true
-    overlay.style.display = 'block'
-    sidebar.style.width = '50vw'
-  }
-  
-  function closeMenu() {
-    menuOpen = false
-    overlay.style.display = 'none'
-    sidebar.style.display = 'block'
-    sidebar.style.width = '0px'
-  }
-  
-  hamburger.addEventListener('click', function () {
-    if (!menuOpen) {
-      openMenu()
-    }
-  })
-  
-  overlay.addEventListener('click', function () {
-    if (menuOpen) {
-      closeMenu()
-    }
-  })
-  
-  document.getElementById('saveButton').addEventListener('click', () => {
-    eval(htmlEditor.getValue());
-  });
-
-
-
-var blockFunctions = {
-    "NOP": function(){
-    },
-    "brightnessBox": function(){
-        var inputValue = document.getElementById("brightnessNumb").value;
-        brightness = parseInt(inputValue);
-    },
-    "saturationBox": function(){
-        var inputValue = document.getElementById("saturationNumb").value;
-        saturation = parseInt(inputValue);
-    },
-    "inversionBox": function(){
-        var inputValue = document.getElementById("inversionNumb").value;
-        inversion = parseInt(inputValue);
-    },
-    "grayscaleBox": function(){
-        var inputValue = document.getElementById("grayscaleNumb").value;
-        grayscale = parseInt(inputValue);
-    },
-    "whenPressedBox": function(){
-        tempBoxOrder = [...boxOrder];
-        boxOrder = [];
-        console.log(boxOrder);
-        console.log("whenpressed box");
-        waitForInput = true;
-    }
-};
 
 previewImg.onmousedown = function() {
     if(waitForInput){
-        boxOrder = [...tempBoxOrder];
-        tempBoxOrder = [];
         waitForInput = false;
         console.log("mouseDown");
-        parseBlocks();
     }
 };
-  
-const parseBlocks = () => {
-    boxOrder.forEach(element => {
-        if(waitForInput){
-            return false;
-        }
-        let index = boxOrder.indexOf(element)
-        boxOrder[index] = "NOP";
-        blockFunctions[element]();
-    });
-    applyFilter();
-};
-
-
-
 
 let brightness = "100", saturation = "100", inversion = "0", grayscale = "0";
 let rotate = 0, flipHorizontal = 1, flipVertical = 1;
@@ -143,17 +55,6 @@ const applyFilter = () => {
     previewImg.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
     previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
 }
-
-boxes.forEach(box => {
-    box.addEventListener("click", () => {
-        const boxToList = document.createElement("p");
-        boxToList.innerText = box.innerText + ": " + box.nextElementSibling.value + "%";
-        document.getElementById("boxList").appendChild(boxToList);
-        boxOrder.push(box.id);
-        document.querySelector(".active").classList.remove("active");
-        console.log(boxOrder);
-    })
-});
 
 filterOptions.forEach(option => {
     option.addEventListener("click", () => {
@@ -216,7 +117,6 @@ const resetFilter = () => {
     brightness = "100"; saturation = "100"; inversion = "0"; grayscale = "0";
     rotate = 0; flipHorizontal = 1; flipVertical = 1;
     filterOptions[0].click();
-    boxOrder = [];
     applyFilter();
 }
 
@@ -238,22 +138,6 @@ const saveImage = () => {
     link.download = "image.jpg";
     link.href = canvas.toDataURL();
     link.click();
-}
-
-const runBoxes = () => {
-    const selectedBox = document.querySelector(".boxFilter .active");
-
-    if(selectedBox.id === "brightnessBox") {
-        brightnessFunc();
-    } else if(selectedBox.id === "saturationBox") {
-        saturationFunc();
-    } else if(selectedBox.id === "inversionBox") {
-        inversionFunc();
-    } else if(selectedBox.id === "grayscaleBox") {
-        grayscaleFunc();
-    }
-    waitForInput = false;
-    applyFilter();
 }
 
 const brightnessFunc = () => {
