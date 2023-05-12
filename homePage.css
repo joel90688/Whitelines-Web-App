@@ -125,15 +125,7 @@ body{
   }
 
 #jsEditorContainer {
-    height: 85vh;
-}
-
-#htmlEditorContainer{
-    display: none;
-}
-
-#cssEditorContainer{
-    display: none;
+    height: 90vh;
 }
 
 .sidebar-button {
@@ -160,5 +152,27 @@ body{
 }
 
 #savebutton{
+  height: 100%;
   background-color: #4da75c;
+}
+
+#githubButton{
+  padding-bottom: 0;
+  background-image: url(images/github-mark.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  right: 0;
+  width: auto;
+  position: absolute;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+#sidebar-footer{
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 5%;
 }
