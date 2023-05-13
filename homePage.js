@@ -1,3 +1,26 @@
+var githubButton = document.getElementById('githubButton');
+var githubButtonExtra = document.getElementById('githubButtonExtra');
+
+githubButton.addEventListener('mouseover', function () {
+  githubButtonExtra.style.opacity = '1';
+  githubButton.style.marginRight = '5vw';
+});
+
+githubButtonExtra.addEventListener('mouseover', function () {
+  githubButtonExtra.style.opacity = '1';
+  githubButton.style.marginRight = '5vw';
+});
+
+githubButtonExtra.addEventListener('mouseout', function () {
+  githubButtonExtra.style.opacity = '0';
+  githubButton.style.marginRight = '0vw';
+});
+
+githubButton.addEventListener('mouseout', function () {
+  githubButtonExtra.style.opacity = '0';
+  githubButton.style.marginRight = '0vw';
+});
+
 var images = [
 {number: 1, link: "images/bg9.png"}, 
 {number: 2, link: "images/bg1.png"},
