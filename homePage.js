@@ -21,6 +21,9 @@ githubButton.addEventListener('mouseout', function () {
   githubButton.style.marginRight = '0vw';
 });
 
+const fileInput = document.getElementById("file-input");
+
+
 var images = [
 {number: 1, link: "images/bg9.png"}, 
 {number: 2, link: "images/bg1.png"},
@@ -38,6 +41,10 @@ images.forEach(image => {
   img.src = image.link;
   img.id = "image" + image.number;
   img.class = "column";
+  img.addEventListener('mouseover',
+    function(){ img.style.outline = "2px dotted grey";});
+  img.addEventListener('mouseout',
+    function(){ img.style.outline = "none";});
   document.getElementById("imageList").appendChild(img);
 
   img.addEventListener('click', function () {
@@ -46,6 +53,18 @@ images.forEach(image => {
   })
 });
 
+
+fileInput.addEventListener('change', function (){
+  let file = fileInput.files[0];
+    if(!file) return;
+  console.log(file);
+  images.push({})
+    //previewImg.src = URL.createObjectURL(file);
+    //previewImg.addEventListener("load", () => {
+    //    resetFilterBtn.click();
+    //    document.querySelector(".container").classList.remove("disable");
+    //});
+});
 
 // initialize CodeMirror editor
 /* var jsEditor = CodeMirror.fromTextArea(document.getElementById("jscode"), {

@@ -1,4 +1,4 @@
-const fileInput = document.querySelector(".file-input"),
+//const fileInput = document.querySelector(".file-input"),
 filterOptions = document.querySelectorAll(".filter button"),
 filterName = document.querySelector(".filter-info .name"),
 filterValue = document.querySelector(".filter-info .value"),
@@ -11,7 +11,7 @@ saveImgBtn = document.querySelector(".save-img");
 
 previewImg.src = localStorage.getItem("picture");
 
-let waitForInput = true;
+let waitForInput = false;
 
 
 var jsEditor = CodeMirror.fromTextArea(document.getElementById("jjscode"), {
