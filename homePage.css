@@ -145,8 +145,9 @@ body{
   background-color: #4da75c;
 }
 
-#githubButton, #githubButtonExtra{
+#githubButton{
   padding-bottom: 0;
+  background-image: url(images/github-mark.png);
   background-repeat: no-repeat;
   background-size: contain;
   height: 100%;
@@ -155,21 +156,6 @@ body{
   position: absolute;
   background-color: transparent;
   box-shadow: none;
-}
-
-#githubButton {
-  background-image: url(images/github-mark.png);
-}
-
-#githubButton:hover {
-  margin-right: 5vw;
-}
-
-#githubButtonExtra {
-  opacity: 0;
-  background-image: url(images/GitHub_Logo.png);
-  width: 5vw;
-  transition: opacity 0.5s ease;
 }
 
 #sidebar-footer{
