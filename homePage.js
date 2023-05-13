@@ -91,24 +91,24 @@ if (menuOpen) {
 
 document.getElementById('saveButton').addEventListener('click', () => {
 
-const code = jsEditor.getValue();
-// save to local storage
-localStorage.setItem('savedCode', code);
-location.reload();
-eval(jsEditor.getValue());
-});
+  const code = jsEditor.getValue();
+  // save to local storage
+  localStorage.setItem('savedCode', code);
+  location.reload();
 
-window.addEventListener('DOMContentLoaded', (event) => {
-// retrieve the saved code from local storage
-const savedCode = localStorage.getItem('savedCode');
-if (savedCode) {
-  // if there's saved code, load it into the editor
-  jsEditor.setValue(savedCode);
-  jsEditor.refresh;
-}
-});
-
-if(!(localStorage.getItem('savedCode')===null)){
-    console.log(localStorage.getItem('savedCode'));
-    eval(localStorage.getItem('savedCode'));
-  };
+  });
+  
+  window.addEventListener('DOMContentLoaded', (event) => {
+  // retrieve the saved code from local storage
+  const savedCode = localStorage.getItem('savedCode');
+  if (savedCode) {
+    // if there's saved code, load it into the editor
+    jsEditor.setValue(savedCode);
+    jsEditor.refresh;
+  }
+  });
+  
+  if(!(localStorage.getItem('savedCode')===null)){
+      console.log(localStorage.getItem('savedCode'));
+      eval(localStorage.getItem('savedCode'));
+    };
