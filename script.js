@@ -219,7 +219,7 @@ const grayscaleFunc = () => {
 
 filterSlider.addEventListener("input", updateFilter);
 resetFilterBtn.addEventListener("click", resetFilter);
-saveImgBtn.addEventListener("click", saveImage);
+saveImgBtn.addEventListener("click", savePicture);
 fileInput.addEventListener("change", loadImage);
 chooseImgBtn.addEventListener("click", () => fileInput.click());
 boxPlay.addEventListener("click", parseBlocks);
