@@ -4,69 +4,77 @@
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Upload</title>
   <link rel="stylesheet" href="style.css">
-  <script src="db2.js"></script>
+  <link rel="stylesheet" href="codemirror.css">
+  <script src="codemirror.js"></script>
+  <script src="db.js"></script>
 </head>
 <body>
-
-
-
+    <main>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24"
+          viewBox="0 0 20 20"
+          width="24"
+          id="hamburger"
+          >
+          <path d="M0 0h20v20H0z" fill="none" />
+          <path d="M18.303,4.742l-1.454-1.455c-0.171-0.171-0.475-0.171-0.646,0l-3.061,3.064H2.019c-0.251,0-0.457,0.205-0.457,0.456v9.578c0,0.251,0.206,0.456,0.457,0.456h13.683c0.252,0,0.457-0.205,0.457-0.456V7.533l2.144-2.146C18.481,5.208,18.483,4.917,18.303,4.742 M15.258,15.929H2.476V7.263h9.754L9.695,9.792c-0.057,0.057-0.101,0.13-0.119,0.212L9.18,11.36h-3.98c-0.251,0-0.457,0.205-0.457,0.456c0,0.253,0.205,0.456,0.457,0.456h4.336c0.023,0,0.899,0.02,1.498-0.127c0.312-0.077,0.55-0.137,0.55-0.137c0.08-0.018,0.155-0.059,0.212-0.118l3.463-3.443V15.929z M11.241,11.156l-1.078,0.267l0.267-1.076l6.097-6.091l0.808,0.808L11.241,11.156z" />
+        </svg>
+        <div id="overlay"></div>
+        <div id="sidebar">
+          <button class="sidebar-button" id="javascriptButton" type="button">JavaScript</button>
+          <button onclick="window.open('https://github.com/joel90688/Whitelines-Web-App', '_blank')" class="sidebar-button" id="githubButtonExtra" type="button"></button>
+          <button onclick="window.open('https://github.com/joel90688/Whitelines-Web-App', '_blank')" class="sidebar-button" id="githubButton" type="button"></button>
+          <div class="sidebar-item" id="jsEditorContainer">
+            <textarea id="jscode"></textarea>
+          </div>
+          <div id="sidebar-footer">
+            <button class="sidebar-button" id="saveButton" type="button">save</button>
+            <button class="sidebar-button" id="prevSaveButton" type="button">Last Save</button>
+            <button class="sidebar-button" id="resetButton" type="button">Reset</button>
+          </div>
+        </div>
+    </main>
+    
     <div class="navigationbar-edit">
         <ul>
         <li><a href="./index.html">Home</a></li>
         </ul>
     </div>
 
-    <div class="container disable">
-    <h2>Options</h2>
-    
-    <div class="wrapper">
-        <div class="editor-panel">
-            <div class="filter">
-                <label class="title">Filters</label>
-                <div class="options">
-                    <button id="brightness" class="active">Brightness</button>
-                    <button id="saturation">Saturation</button>
-                    <button id="inversion">Inversion</button>
-                    <button id="grayscale">Grayscale</button>
-                </div>
-                <div class="slider">
-                    <div class="filter-info">
-                        <p class="name">Brighteness</p>
-                        <p class="value">100%</p>
-                    </div>
-                    <input type="range" value="100" min="0" max="200">
-                </div>
-            </div>
-            <div class="rotate">
-                <label class="title">Rotate & Flip</label>
-                <div class="options">
-                    <button id="left"><i class="fa-solid fa-rotate-left"></i></button>
-                    <button id="right"><i class="fa-solid fa-rotate-right"></i></button>
-                    <button id="horizontal"><i class='bx bx-reflect-vertical'></i></button>
-                    <button id="vertical"><i class='bx bx-reflect-horizontal' ></i></button>
-                </div>
-            </div>
-        </div>
-        
-    </div> <!-- länkknapp --> 
-    <div class="wrapper">
-        <div class="editor-panel">
-            <div class="filter">
-                <label class="title">Functions</label>
-                <div class="options">
-                    <button id="grayscale" onclick="window.location.href='1.html'">Linking</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <button id="filterPanelButton" type="button"></button>
 
-    <div class="controls">
-        <button class="reset-filter">Reset Filters</button>
-        <div class="row">
-            <input type="file" id="picture" class="file-input" accept="image/*" capture>
-            <button id = "picture" class="choose-img">Choose Image</button>
-            <button class="save-img">Save Image</button>
+    <div class="editor-panel" id="filterPanel">
+        <div class="filter">
+            <label class="title">Filters</label>
+            <div class="options">
+                <button id="brightness" class="active">Brightness</button>
+                <button id="saturation">Saturation</button>
+                <button id="inversion">Inversion</button>
+                <button id="grayscale">Grayscale</button>
+            </div>
+            <div class="slider">
+                <div class="filter-info">
+                    <p class="name">Brighteness</p>
+                    <p class="value">100%</p>
+                </div>
+                <input type="range" value="100" min="0" max="200">
+            </div>
         </div>
+        <div class="rotate">
+            <label class="title">Rotate & Flip</label>
+            <div class="options">
+                <button id="left"><i class="fa-solid fa-rotate-left"></i></button>
+                <button id="right"><i class="fa-solid fa-rotate-right"></i></button>
+                <button id="horizontal"><i class='bx bx-reflect-vertical'></i></button>
+                <button id="vertical"><i class='bx bx-reflect-horizontal' ></i></button>
+            </div>
+        </div>
+        <div class="buttonsss">
+        <button class="reset-filter" id="resetFiltersButton">Reset Filters</button>
+        <button id="choose-img" class="choose-img">Delete Image</button>
+        <button class="save-img">Export Image</button>
+    </div>
     </div>
 </div>
 
@@ -75,46 +83,7 @@
     <img src="images/image-placeholder.png" alt="preview-img" id = "image">
   </div>
 </div>
-
-<div class="container">
-    <h2>Testing</h2>
-    <div class="wrapper">
-        <div class="editor-panel">
-            <div class="boxFilter">
-                <label class="title">Boxes</label>
-                <div class="boxes">
-                    <div class = "buttonContainer">
-                        <button id="brightnessBox">Brightness</button>
-                        <input class = "buttonInput" type="number" id="brightnessNumb" name="brightnessNumb" min="0" max="9999" value="0">
-                    </div>
-                    <div class = "buttonContainer">
-                        <button id="saturationBox">Saturation</button>
-                        <input class = "buttonInput" type="number" id="saturationNumb" name="saturationNumb" min="0" max="9999" value="0">
-                    </div>
-                    <div class = "buttonContainer">
-                        <button id="inversionBox">Inversion</button>
-                        <input class = "buttonInput" type="number" id="inversionNumb" name="inversionNumb" min="0" max="9999" value="0">
-                    </div>
-                    <div class = "buttonContainer">
-                        <button id="grayscaleBox">Grayscale</button>
-                        <input class = "buttonInput" type="number" id="grayscaleNumb" name="grayscaleNumb" min="0" max="9999" value="0">
-                    </div>
-                    <div class = "buttonContainer">
-                        <button id="whenPressedBox">WhenPressed</button>
-                    </div>
-
-                    <div class = "buttonContainer">
-                        <button id="next">Next Image</button>
-                    <div class = "buttonContainer">
-                        <button id="prev">Previous Image</button>
-                    </div class = "buttonContainer">
-                        <button id="remove">Remove Picture</button>
-                </div>
-            </div>
-        </div>
-    </div>
+</body>
+</html>
 
 <script src="script.js"></script>
-
-  </body>
-</html>
