@@ -485,8 +485,13 @@ box-shadow: none;
 }
 
 #sidebar-footer button{
-height: 100%;
-background-color: #4da75c;
+  height: 100%;
+  background-color: #4da75c;
+}
+
+#sidebar-footer #resetButton {
+  background-color: #ff3c00;
+  margin-left: 1vw;
 }
 
 #githubButton, #githubButtonExtra{
