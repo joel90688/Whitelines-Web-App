@@ -1,4 +1,4 @@
-//const fileInput = document.querySelector(".file-input"),
+    //const fileInput = document.querySelector(".file-input"),
 filterOptions = document.querySelectorAll(".filter button"),
 filterName = document.querySelector(".filter-info .name"),
 filterValue = document.querySelector(".filter-info .value"),
@@ -6,6 +6,7 @@ filterSlider = document.querySelector(".slider input"),
 rotateOptions = document.querySelectorAll(".rotate button"),
 previewImg = document.querySelector(".preview-img img"),
 resetFilterBtn = document.querySelector(".reset-filter"),
+saveButton = document.querySelector(".save-button"),
 
 previewImg.src = localStorage.getItem("picture");
 
@@ -32,7 +33,7 @@ githubButton.addEventListener('mouseout', function () {
   githubButton.style.marginRight = '0vw';
 });
 
-let waitForInput = false;
+let waitForInput = true;
 
 
 var jsEditor = CodeMirror.fromTextArea(document.getElementById("jscode"), {
@@ -242,7 +243,7 @@ const saveImage = () => {
     }
     ctx.scale(flipHorizontal, flipVertical);
     ctx.drawImage(previewImg, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
-    
+    var canvas2 = document.getElementById('canvasSak');
     const link = document.createElement("a");
     link.download = "image.jpg";
     link.href = canvas.toDataURL();
@@ -267,8 +268,56 @@ const grayscaleFunc = () => {
 
 filterSlider.addEventListener("input", updateFilter);
 resetFilterBtn.addEventListener("click", resetFilter);
+saveButton.addEventListener("click", saveImage);
 
 if(!(localStorage.getItem('savedEditCode')===null)){
     console.log(localStorage.getItem('savedEditCode'));
     eval(localStorage.getItem('savedEditCode'));
 };
+
+previewImg.onload = function(){
+  var canvas = document.getElementById('canvasSak');
+  
+  canvas.width = previewImg.width;
+  canvas.height = previewImg.height;
+
+
+  var ctx = canvas.getContext('2d');
+
+  ctx.drawImage(previewImg,0,0,previewImg.width,previewImg.height);
+  
+  var pos = { x: 0, y: 0 };
+
+
+  canvas.addEventListener('mousemove', draw);
+  document.addEventListener('mousedown', setPosition);
+  document.addEventListener('mouseenter', setPosition);
+  
+  // new position from mouse event
+  function setPosition(e) {
+    var rect = canvas.getBoundingClientRect(); 
+    pos.x = e.clientX - rect.left; 
+    pos.y = e.clientY - rect.top;
+  }
+
+ 
+  
+  function draw(e) {
+    // mouse left button must be pressed
+    if (e.buttons !== 1) return;
+    console.log("yo");
+    ctx.beginPath(); // begin
+  
+    ctx.lineWidth = 5;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = '#c0392b';
+  
+    ctx.moveTo(pos.x, pos.y); // from
+    setPosition(e);
+    ctx.lineTo(pos.x, pos.y); // to
+  
+    ctx.stroke(); // draw it!
+  }
+};
+
+
