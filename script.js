@@ -50,15 +50,26 @@ const overlay = document.getElementById('overlay')
 
 const filterPanelButton = document.getElementById('filterPanelButton')
 const filterPanel = document.getElementById('filterPanel')
+const filterPanelButtonAfter = filterPanelButton.querySelector('#filterPanelButton::after');
 
-// 15vw
 let panelOpen = false
+
+function changeHoverColor(color) {
+    var styleElement = document.createElement('style');
+    styleElement.innerHTML = "#filterPanelButton:hover::after { background-color: " + color + "; }";
+    document.head.appendChild(styleElement);
+}
 
 function openFilterPanel() {
     panelOpen = true
     filterPanel.style.width = '15vw'
     filterPanelButton.style.marginRight = '15.5vw'
     filterPanelButton.style.transform = 'rotate(360deg)'
+
+    changeHoverColor('#aba8a6');
+    setTimeout(function () {
+        changeHoverColor('#ffffff9b');
+    }, 300);
 }
 
 function closeFilterPanel() {
@@ -66,6 +77,11 @@ function closeFilterPanel() {
     filterPanel.style.width = '0px'
     filterPanelButton.style.marginRight = '1vw'
     filterPanelButton.style.transform = 'rotate(180deg)'
+
+    changeHoverColor('#aba8a6');
+    setTimeout(function () {
+        changeHoverColor('#ffffff9b');
+    }, 300);
 }
 
 filterPanelButton.addEventListener('click', function () {
@@ -75,6 +91,7 @@ filterPanelButton.addEventListener('click', function () {
         closeFilterPanel()
     }
 })
+
 
 let menuOpen = false
 

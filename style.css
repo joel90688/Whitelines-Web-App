@@ -194,7 +194,7 @@ body{
   color: #fff;
   cursor: pointer;
   background: none;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   text-transform: uppercase;
   color: #6C757D;
   border: 1px solid #6C757D;
@@ -232,14 +232,11 @@ body{
   height: 100%;
   pointer-events: auto;
   background-color: transparent;
-  transition: all 0.3s ease;
+  transition: margin .3s ease;
 }
 
 #filterPanelButton:hover::after {
   background-color: #ffffff9b;
-}
-#filterPanelButton.rotate {
-  pointer-events: none;
 }
 
 
