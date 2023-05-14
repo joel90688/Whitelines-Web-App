@@ -227,20 +227,21 @@ body{
   content: "";
   position: absolute;
   top: 0;
-  right: 2vw;
-  width: 1vw;
+  right: -.5vw;
+  width: 3.5vw;
   height: 100%;
   pointer-events: auto;
   background-color: transparent;
+  transition: all 0.3s ease;
 }
 
-#filterPanelButton:hover {
+#filterPanelButton:hover::after {
   background-color: #ffffff9b;
 }
-
-#filterPanelButton::after:hover {
-  background-color: #ffffff;
+#filterPanelButton.rotate {
+  pointer-events: none;
 }
+
 
 
 

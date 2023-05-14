@@ -57,7 +57,7 @@ let panelOpen = false
 function openFilterPanel() {
     panelOpen = true
     filterPanel.style.width = '15vw'
-    filterPanelButton.style.marginRight = '16vw'
+    filterPanelButton.style.marginRight = '15.5vw'
     filterPanelButton.style.transform = 'rotate(360deg)'
 }
 
@@ -269,8 +269,6 @@ const grayscaleFunc = () => {
 
 filterSlider.addEventListener("input", updateFilter);
 resetFilterBtn.addEventListener("click", resetFilter);
-saveImgBtn.addEventListener("click", saveImage);
-chooseImgBtn.addEventListener("click", () => fileInput.click());
 //fileInput.addEventListener("change", loadImage);
 //boxPlay.addEventListener("click", parseBlocks);
 
