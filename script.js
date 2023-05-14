@@ -6,8 +6,6 @@ filterSlider = document.querySelector(".slider input"),
 rotateOptions = document.querySelectorAll(".rotate button"),
 previewImg = document.querySelector(".preview-img img"),
 resetFilterBtn = document.querySelector(".reset-filter"),
-chooseImgBtn = document.querySelector(".choose-img"),
-saveImgBtn = document.querySelector(".save-img");
 
 previewImg.src = localStorage.getItem("picture");
 
@@ -157,27 +155,10 @@ document.getElementById('resetButton').addEventListener('click', () => {
   }
 });
 
-    
-
-previewImg.onmousedown = function() {
-    if(waitForInput){
-        waitForInput = false;
-        console.log("mouseDown");
-    }
-};
 
 let brightness = "100", saturation = "100", inversion = "0", grayscale = "0";
 let rotate = 0, flipHorizontal = 1, flipVertical = 1;
 
-const loadImage = () => {
-    let file = fileInput.files[0];
-    if(!file) return;
-    previewImg.src = URL.createObjectURL(file);
-    previewImg.addEventListener("load", () => {
-        resetFilterBtn.click();
-        document.querySelector(".container").classList.remove("disable");
-    });
-}
 
 const applyFilter = () => {
     previewImg.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
@@ -286,8 +267,6 @@ const grayscaleFunc = () => {
 
 filterSlider.addEventListener("input", updateFilter);
 resetFilterBtn.addEventListener("click", resetFilter);
-//fileInput.addEventListener("change", loadImage);
-//boxPlay.addEventListener("click", parseBlocks);
 
 if(!(localStorage.getItem('savedEditCode')===null)){
     console.log(localStorage.getItem('savedEditCode'));
