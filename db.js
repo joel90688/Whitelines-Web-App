@@ -1,110 +1,112 @@
+let db = null;
+let pictureID = 0;
+let request = window.indexedDB.open('myDatabase', 1);
 
-let db;
-let dbVersion = 1;
-let dbReady = false;
-let imagenr;
+request.onerror = function(event) {
+  console.log('Failed to open database');
+};
 
-			document.addEventListener('DOMContentLoaded', () => {
-				console.log('dom content loaded');
+request.onsuccess = function(event) {
+  db = event.target.result;
+  console.log('Database opened successfully');
 
-				initDb();
+  const transaction = db.transaction(['myObjectStore'], 'readonly');
+  const objectStore = transaction.objectStore(['myObjectStore']);
+  
+  const requ = objectStore.getAllKeys();
+  
+  requ.onsuccess = function(event) {
+    const keys = event.target.result;
+    console.log(keys); // an array of primary keys
 
-				document.querySelector('#picture').addEventListener('change', doFile);
-				
-				document.querySelector('#next').addEventListener('click', doImageNext);
-				document.querySelector('#prev').addEventListener('click', doImagePrev);
+	keys.forEach(key => {
+	  getObjectById(key)
+	    .then(url => {
+	      const img = document.createElement("img");
+	      img.style.cssText = 'float: left;width: 25%;padding: 5px;cursor: pointer';
+	      img.src = url;
+	      img.id = key;
+	      img.class = "column";
+	      img.addEventListener('mouseover',
+	        function(){ img.style.outline = "2px dotted grey";});
+	      img.addEventListener('mouseout',
+	        function(){ img.style.outline = "none";});
+	      document.getElementById("imageList").appendChild(img);
+
+	      img.addEventListener('click', function () {
+	        window.location.href = "edit.html";
+	        localStorage.setItem("picture", img.src);
+			localStorage.setItem("id", img.id);
+	      })
+	    })
+	    .catch(error => console.log(error));
+	});
+  };
+};
+
+
+request.onupgradeneeded = function(event) {
+  db = event.target.result;
+  let objectStore = db.createObjectStore('myObjectStore', { keyPath: 'id', autoIncrement: true });
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('dom content loaded');
+
+  document.querySelector('#file-input').addEventListener('change', savePicture);
 });
-			
 
- 
-			function initDb() {
-				let request = indexedDB.open('testPics', dbVersion);
+function savePicture(event) {
+  let file = event.target.files[0];
+  let reader = new FileReader();
 
-				request.onerror = function(e) {
-					console.error('Unable to open database.');
-				}
+  reader.onload = function(event) {
+    let blob = new Blob([new Uint8Array(event.target.result)]);
+    let objectStore = db.transaction(['myObjectStore'], 'readwrite').objectStore('myObjectStore');
+    let request = objectStore.add({ image: blob });
 
-				request.onsuccess = function(e) {
-					db = e.target.result;
-					//doImageTest();
-					console.log('db opened');
-					imagenr = 1;
-				}
+    request.onsuccess = function(event) {
+      console.log('Image added to IndexedDB');
+    };
+  };
+  reader.readAsArrayBuffer(file);
+}
 
-				request.onupgradeneeded = function(e) {
-					let db = e.target.result;
-					let store = db.createObjectStore('cachedForms', { keyPath: 'id' });
-					dbReady = true;
-					
-				}
-			} 
+function getObjectById(id) {
+	return new Promise(function(resolve, reject) {
+	  let transaction = db.transaction(['myObjectStore'], 'readonly');
+	  let objectStore = transaction.objectStore('myObjectStore');
+	  let request = objectStore.get(id);
+	  request.onsuccess = function(event) {
+		let object = event.target.result;
+		if (object) {
+		  let blob = object.image;
+		  let t = URL.createObjectURL(blob);
+		  resolve(t);
+		} else {
+		  reject('Object not found');
+		}
+	  };
+	  request.onerror = function(event) {
+		reject('Error retrieving object');
+	  };
+	});
+  }
 
-			function doFile(e) {
-				console.log('change event fired for input field');
-				let file = e.target.files[0];
-				var reader = new FileReader();
-//				reader.readAsDataURL(file);
-				reader.readAsBinaryString(file);
-
-				reader.onload = function(e) {
-					//alert(e.target.result);
-					let bits = e.target.result;
-					let ob = {
-						created:new Date(),
-						data:bits
-					};
-
-					let trans = db.transaction(['cachedForms'], 'readwrite');
-					let addReq = trans.objectStore('cachedForms').put(ob);
-					//let addReq = trans.put(ob, 1);
-
-
-					addReq.onerror = function(e) {
-						console.log('error storing data');
-						console.error(e);
-					}
-
-					trans.oncomplete = function(e) {
-						console.log('data stored');
-					
-					}
-				}
-			}
-
-			function doImageNext() {
-				console.log('doImageTest' + imagenr);
-				let image = document.querySelector('#image');
-				imagenr++;
-				//let recordToLoad = 1; //parseInt(document.querySelector('#recordToLoad').value,10);
-				//if(recordToLoad === '') recordToLoad = 1;
-
-				let trans = db.transaction(['cachedForms'], 'readonly');
-				
-				//hard coded id
-				let req = trans.objectStore('cachedForms').get(imagenr);
-				req.onsuccess = function(e) {
-					let record = e.target.result;
-					console.log('get success', record);
-					image.src = 'data:image/jpeg;base64,' + btoa(record.data);
-					
-				}
-			}
-
-			function doImagePrev() {
-				console.log('doImageTest' + imagenr);
-				let image = document.querySelector('#image');
-				imagenr--;
-				//let recordToLoad = 1; //parseInt(document.querySelector('#recordToLoad').value,10);
-				//if(recordToLoad === '') recordToLoad = 1;
-
-				let trans = db.transaction(['cachedForms'], 'readonly');
-				
-				//hard coded id
-				let req = trans.objectStore('cachedForms').get(imagenr);
-				req.onsuccess = function(e) {
-					let record = e.target.result;
-					console.log('get success', record);
-					image.src = 'data:image/jpeg;base64,' + btoa(record.data);
-			
-				}
-			}
+  function removeImage() {
+	console.log(' from IndexedDB');
+	let ID = parseInt(localStorage.getItem("id"));
+	console.log(ID);
+	let objectStore = db.transaction(['myObjectStore'], 'readwrite').objectStore('myObjectStore');
+	let request = objectStore.get(ID);
+	request.onsuccess = function(event) {
+	  if (request.result) {
+		let deleteRequest = objectStore.delete(ID);
+		deleteRequest.onsuccess = function(event) {
+		  console.log('Image removed from IndexedDB');
+		  window.location.href = "index.html";
+		};
+	  }
+	};
+  }
+  

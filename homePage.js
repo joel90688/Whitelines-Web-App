@@ -24,16 +24,12 @@ githubButton.addEventListener('mouseout', function () {
 const fileInput = document.getElementById("file-input");
 
 
+
 var images = [
-{number: 1, link: "images/bg9.png"}, 
-{number: 2, link: "images/bg1.png"},
-{number: 3, link: "images/bg2.png"}, 
-{number: 4, link: "images/bg3.png"},
-{number: 5, link: "images/bg4.png"},
-{number: 6, link: "images/bg5.png"}, 
-{number: 7, link: "images/bg6.png"},
-{number: 8, link: "images/bg7.png"},
-{number: 9, link: "images/bg8.png"}];
+  {number: 1, link: "images/bg8.png"}
+];
+
+
 
 images.forEach(image => {
   const img = document.createElement("img");
@@ -54,17 +50,34 @@ images.forEach(image => {
 });
 
 
-fileInput.addEventListener('change', function (){
+fileInput.addEventListener('change', function () {
+  console.log(images);
   let file = fileInput.files[0];
-    if(!file) return;
-  console.log(file);
-  images.push({})
-    //previewImg.src = URL.createObjectURL(file);
-    //previewImg.addEventListener("load", () => {
-    //    resetFilterBtn.click();
-    //    document.querySelector(".container").classList.remove("disable");
-    //});
+  if (!file) return;
+
+  // Create a new FileReader object
+  let reader = new FileReader();
+
+  // When the reader has finished reading the file
+  reader.onload = function() {
+    // Create a new image object and add it to the images array
+    let newImage = { number: images.length + 1, link: reader.result };
+    images.push(newImage);
+    console.log("yes");
+
+    // Create a new img element and copy the formatting properties from an existing img element
+    let img = document.createElement("img");
+    img.style.cssText = 'float: left;width: 25%;padding: 5px;cursor: pointer';
+    img.src = reader.result;
+
+    // Add the img element to the imageList container
+    document.getElementById("imageList").appendChild(img);
+  };
+  // Read the contents of the uploaded file as a data URL
+  reader.readAsDataURL(file);
 });
+
+
 
 // initialize CodeMirror editor
 /* var jsEditor = CodeMirror.fromTextArea(document.getElementById("jscode"), {
