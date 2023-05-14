@@ -79,17 +79,17 @@ document.getElementById('saveButton').addEventListener('click', () => {
 
   const code = jsEditor.getValue();
   // save to local storage
-  localStorage.setItem('savedCode', code);
+  localStorage.setItem('savedEditCode', code);
   location.reload();
 
   });
   
   window.addEventListener('DOMContentLoaded', (event) => {
   // retrieve the saved code from local storage
-  const savedCode = localStorage.getItem('savedCode');
-  if (savedCode) {
+  const savedEditCode = localStorage.getItem('savedEditCode');
+  if (savedEditCode) {
     // if there's saved code, load it into the editor
-    jsEditor.setValue(savedCode);
+    jsEditor.setValue(savedEditCode);
     jsEditor.refresh;
   }
   });
@@ -226,7 +226,7 @@ chooseImgBtn.addEventListener("click", () => fileInput.click());
 //fileInput.addEventListener("change", loadImage);
 //boxPlay.addEventListener("click", parseBlocks);
 
-if(!(localStorage.getItem('savedCode')===null)){
-    console.log(localStorage.getItem('savedCode'));
-    eval(localStorage.getItem('savedCode'));
+if(!(localStorage.getItem('savedEditCode')===null)){
+    console.log(localStorage.getItem('savedEditCode'));
+    eval(localStorage.getItem('savedEditCode'));
 };
