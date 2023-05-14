@@ -120,13 +120,20 @@ document.getElementById('saveButton').addEventListener('click', () => {
   localStorage.setItem('savedCode', code);
   location.reload();
 
-  });
+});
 
 document.getElementById('prevSaveButton').addEventListener('click', () => {
 
     localStorage.setItem('savedCode', localStorage.getItem('prevCodeSave'));
     location.reload();
   
+});
+
+document.getElementById('resetButton').addEventListener('click', () => {
+
+  localStorage.setItem('savedCode', '');
+  location.reload();
+
 });
   
   window.addEventListener('DOMContentLoaded', (event) => {

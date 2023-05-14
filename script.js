@@ -91,6 +91,13 @@ document.getElementById('prevSaveButton').addEventListener('click', () => {
     location.reload();
   
 });
+
+document.getElementById('resetButton').addEventListener('click', () => {
+
+    localStorage.setItem('savedEditCode', '');
+    location.reload();
+  
+});
   
   window.addEventListener('DOMContentLoaded', (event) => {
   // retrieve the saved code from local storage

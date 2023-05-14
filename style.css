@@ -484,7 +484,7 @@ transform: translateY(1px);
 box-shadow: none;
 }
 
-#savebutton{
+#sidebar-footer button{
 height: 100%;
 background-color: #4da75c;
 }
