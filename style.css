@@ -184,7 +184,7 @@ body{
   background: #fe5000; 
   border-color: #fe5000;
 }
-#resetFiltersButton{
+.buttonsss button{
   margin-top: 10px;
   margin-left: 5%;
   padding: 0px 10px;
@@ -199,7 +199,7 @@ body{
   color: #6C757D;
   border: 1px solid #6C757D;
 }
-#resetFiltersButton:hover{
+.buttonsss button:hover{
   color: #fff;
   background: #6C757D;
 }
@@ -388,4 +388,9 @@ position: absolute;
 bottom: 0;
 width: 100%;
 height: 5%;
+}
+
+.buttonsss{
+  display: flex;
+  flex-direction: column;
 }

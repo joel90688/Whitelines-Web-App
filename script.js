@@ -6,6 +6,8 @@ filterSlider = document.querySelector(".slider input"),
 rotateOptions = document.querySelectorAll(".rotate button"),
 previewImg = document.querySelector(".preview-img img"),
 resetFilterBtn = document.querySelector(".reset-filter"),
+chooseImgBtn = document.querySelector(".choose-img"),
+saveImgBtn = document.querySelector(".save-img");
 
 previewImg.src = localStorage.getItem("picture");
 
@@ -268,7 +270,7 @@ const grayscaleFunc = () => {
 filterSlider.addEventListener("input", updateFilter);
 resetFilterBtn.addEventListener("click", resetFilter);
 saveImgBtn.addEventListener("click", saveImage);
-chooseImgBtn.addEventListener("click", () => fileInput.click());
+chooseImgBtn.addEventListener("click", removeImage);
 
 
 if(!(localStorage.getItem('savedEditCode')===null)){
