@@ -48,6 +48,34 @@ const hamburger = document.getElementById('hamburger')
 const sidebar = document.getElementById('sidebar')
 const overlay = document.getElementById('overlay')
 
+const filterPanelButton = document.getElementById('filterPanelButton')
+const filterPanel = document.getElementById('filterPanel')
+
+// 15vw
+let panelOpen = false
+
+function openFilterPanel() {
+    panelOpen = true
+    filterPanel.style.width = '15vw'
+    filterPanelButton.style.marginRight = '16vw'
+    filterPanelButton.style.transform = 'rotate(360deg)'
+}
+
+function closeFilterPanel() {
+    panelOpen = false
+    filterPanel.style.width = '0px'
+    filterPanelButton.style.marginRight = '1vw'
+    filterPanelButton.style.transform = 'rotate(180deg)'
+}
+
+filterPanelButton.addEventListener('click', function () {
+    if (!panelOpen) {
+        openFilterPanel()
+    } else {
+        closeFilterPanel()
+    }
+})
+
 let menuOpen = false
 
 function openMenu() {
