@@ -54,6 +54,9 @@ function openMenu() {
   menuOpen = true
   overlay.style.display = 'block'
   sidebar.style.width = '50vw'
+  setTimeout(function() {
+    jsEditor.refresh();
+  },100);
 }
 
 function closeMenu() {

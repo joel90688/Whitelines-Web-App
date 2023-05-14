@@ -58,12 +58,6 @@ fileInput.addEventListener('change', function (){
   let file = fileInput.files[0];
     if(!file) return;
   console.log(file);
-  images.push({})
-    //previewImg.src = URL.createObjectURL(file);
-    //previewImg.addEventListener("load", () => {
-    //    resetFilterBtn.click();
-    //    document.querySelector(".container").classList.remove("disable");
-    //});
 });
 
 // initialize CodeMirror editor
@@ -91,6 +85,9 @@ function openMenu() {
   menuOpen = true
   overlay.style.display = 'block'
   sidebar.style.width = '50vw'
+  setTimeout(function() {
+    jsEditor.refresh();
+  },100);
 }
 
 function closeMenu() {
@@ -142,7 +139,6 @@ document.getElementById('resetButton').addEventListener('click', () => {
   if (savedCode) {
     // if there's saved code, load it into the editor
     jsEditor.setValue(savedCode);
-    jsEditor.refresh;
   }
   });
   
