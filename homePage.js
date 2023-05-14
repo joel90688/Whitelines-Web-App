@@ -113,37 +113,25 @@ overlay.addEventListener('click', function () {
 })
 
 document.getElementById('saveButton').addEventListener('click', () => {
-  eval(jsEditor.getValue());
-});
 
-/* //martinkod
-htmlEditor.getDoc().setValue(document.documentElement.outerHTML);
+  const code = jsEditor.getValue();
+  // save to local storage
+  localStorage.setItem('savedCode', code);
+  location.reload();
 
-document.getElementById('htmlButton').addEventListener('click', () => {
-  htmlEditor.getDoc().setValue(document.documentElement.outerHTML);
   });
-
-document.getElementById('saveButton').addEventListener('click', updatePageFromFullHtml);
-
-function updatePageFromFullHtml() {
-  const newHtml = htmlEditor.getValue();
-
-  // Create a temporary DOM element to parse the full HTML
-  const tempElement = document.createElement('html');
-  tempElement.innerHTML = newHtml;
-
-  // Save the content of the fullHtmlCode textarea
-  const fullHtmlContent = newHtml;
-
-  // Replace the current DOM with the new one
-  document.replaceChild(tempElement, document.documentElement);
-
-  // Restore the content of the fullHtmlCode textarea
-  htmlEditor.getDoc().setValue(fullHtmlContent);
-
-  // Reattach the event listener for the "Save Changes" button
-  document.getElementById('saveButton').addEventListener('click', updatePageFromFullHtml);
-
-  // Trigger the "Refresh Code" button event to update the textarea
-  document.getElementById('htmlButton').click();
-} */
+  
+  window.addEventListener('DOMContentLoaded', (event) => {
+  // retrieve the saved code from local storage
+  const savedCode = localStorage.getItem('savedCode');
+  if (savedCode) {
+    // if there's saved code, load it into the editor
+    jsEditor.setValue(savedCode);
+    jsEditor.refresh;
+  }
+  });
+  
+  if(!(localStorage.getItem('savedCode')===null)){
+      console.log(localStorage.getItem('savedCode'));
+      eval(localStorage.getItem('savedCode'));
+    };
