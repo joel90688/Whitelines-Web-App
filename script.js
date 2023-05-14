@@ -11,24 +11,87 @@ saveImgBtn = document.querySelector(".save-img");
 
 previewImg.src = localStorage.getItem("picture");
 
+var githubButton = document.getElementById('githubButton');
+var githubButtonExtra = document.getElementById('githubButtonExtra');
+
+githubButton.addEventListener('mouseover', function () {
+  githubButtonExtra.style.opacity = '1';
+  githubButton.style.marginRight = '5vw';
+});
+
+githubButtonExtra.addEventListener('mouseover', function () {
+  githubButtonExtra.style.opacity = '1';
+  githubButton.style.marginRight = '5vw';
+});
+
+githubButtonExtra.addEventListener('mouseout', function () {
+  githubButtonExtra.style.opacity = '0';
+  githubButton.style.marginRight = '0vw';
+});
+
+githubButton.addEventListener('mouseout', function () {
+  githubButtonExtra.style.opacity = '0';
+  githubButton.style.marginRight = '0vw';
+});
+
 let waitForInput = false;
 
 
-var jsEditor = CodeMirror.fromTextArea(document.getElementById("jjscode"), {
-    lineNumbers: true,
-    mode: "javascript",
-  });
-  
-  var htmlEditor = CodeMirror.fromTextArea(document.getElementById("hhtmlcode"), {
+var jsEditor = CodeMirror.fromTextArea(document.getElementById("jscode"), {
     lineNumbers: true,
     mode: "html"
   });
   
-  htmlEditor.setSize("100%", "100%");
+jsEditor.setSize("100%", "100%");
+
+const hamburger = document.getElementById('hamburger')
+const sidebar = document.getElementById('sidebar')
+const overlay = document.getElementById('overlay')
+
+let menuOpen = false
+
+function openMenu() {
+  menuOpen = true
+  overlay.style.display = 'block'
+  sidebar.style.width = '50vw'
+}
+
+function closeMenu() {
+  menuOpen = false
+  overlay.style.display = 'none'
+  sidebar.style.display = 'block'
+  sidebar.style.width = '0px'
+}
+
+hamburger.addEventListener('click', function () {
+  if (!menuOpen) {
+    openMenu()
+  }
+})
+
+overlay.addEventListener('click', function () {
+  if (menuOpen) {
+    closeMenu()
+  }
+})
+
+document.getElementById('saveButton').addEventListener('click', () => {
+
+  const code = jsEditor.getValue();
+  // save to local storage
+  localStorage.setItem('savedCode', code);
+  location.reload();
+
+  });
   
-  var cssEditor = CodeMirror.fromTextArea(document.getElementById("csscode"), {
-    lineNumbers: true,
-    mode: "css"
+  window.addEventListener('DOMContentLoaded', (event) => {
+  // retrieve the saved code from local storage
+  const savedCode = localStorage.getItem('savedCode');
+  if (savedCode) {
+    // if there's saved code, load it into the editor
+    jsEditor.setValue(savedCode);
+    jsEditor.refresh;
+  }
   });
 
 previewImg.onmousedown = function() {
@@ -159,6 +222,11 @@ const grayscaleFunc = () => {
 filterSlider.addEventListener("input", updateFilter);
 resetFilterBtn.addEventListener("click", resetFilter);
 saveImgBtn.addEventListener("click", saveImage);
-fileInput.addEventListener("change", loadImage);
 chooseImgBtn.addEventListener("click", () => fileInput.click());
-boxPlay.addEventListener("click", parseBlocks);
+//fileInput.addEventListener("change", loadImage);
+//boxPlay.addEventListener("click", parseBlocks);
+
+if(!(localStorage.getItem('savedCode')===null)){
+    console.log(localStorage.getItem('savedCode'));
+    eval(localStorage.getItem('savedCode'));
+};
