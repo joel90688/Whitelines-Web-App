@@ -6,8 +6,6 @@ filterSlider = document.querySelector(".slider input"),
 rotateOptions = document.querySelectorAll(".rotate button"),
 previewImg = document.querySelector(".preview-img img"),
 resetFilterBtn = document.querySelector(".reset-filter"),
-chooseImgBtn = document.querySelector(".choose-img"),
-saveImgBtn = document.querySelector(".save-img");
 
 previewImg.src = localStorage.getItem("picture");
 
@@ -48,12 +46,60 @@ const hamburger = document.getElementById('hamburger')
 const sidebar = document.getElementById('sidebar')
 const overlay = document.getElementById('overlay')
 
+const filterPanelButton = document.getElementById('filterPanelButton')
+const filterPanel = document.getElementById('filterPanel')
+const filterPanelButtonAfter = filterPanelButton.querySelector('#filterPanelButton::after');
+
+let panelOpen = false
+
+function changeHoverColor(color) {
+    var styleElement = document.createElement('style');
+    styleElement.innerHTML = "#filterPanelButton:hover::after { background-color: " + color + "; }";
+    document.head.appendChild(styleElement);
+}
+
+function openFilterPanel() {
+    panelOpen = true
+    filterPanel.style.width = '15vw'
+    filterPanelButton.style.marginRight = '15.5vw'
+    filterPanelButton.style.transform = 'rotate(360deg)'
+
+    changeHoverColor('#aba8a6');
+    setTimeout(function () {
+        changeHoverColor('#ffffff9b');
+    }, 300);
+}
+
+function closeFilterPanel() {
+    panelOpen = false
+    filterPanel.style.width = '0px'
+    filterPanelButton.style.marginRight = '1vw'
+    filterPanelButton.style.transform = 'rotate(180deg)'
+
+    changeHoverColor('#aba8a6');
+    setTimeout(function () {
+        changeHoverColor('#ffffff9b');
+    }, 300);
+}
+
+filterPanelButton.addEventListener('click', function () {
+    if (!panelOpen) {
+        openFilterPanel()
+    } else {
+        closeFilterPanel()
+    }
+})
+
+
 let menuOpen = false
 
 function openMenu() {
   menuOpen = true
   overlay.style.display = 'block'
   sidebar.style.width = '50vw'
+  setTimeout(function() {
+    jsEditor.refresh();
+  },100);
 }
 
 function closeMenu() {
@@ -79,10 +125,25 @@ document.getElementById('saveButton').addEventListener('click', () => {
 
   const code = jsEditor.getValue();
   // save to local storage
+  localStorage.setItem('prevEditSave', localStorage.getItem('savedEditCode'));
   localStorage.setItem('savedEditCode', code);
   location.reload();
 
   });
+
+document.getElementById('prevSaveButton').addEventListener('click', () => {
+
+    localStorage.setItem('savedEditCode', localStorage.getItem('prevEditSave'));
+    location.reload();
+  
+});
+
+document.getElementById('resetButton').addEventListener('click', () => {
+
+    localStorage.setItem('savedEditCode', '');
+    location.reload();
+  
+});
   
   window.addEventListener('DOMContentLoaded', (event) => {
   // retrieve the saved code from local storage
@@ -92,27 +153,12 @@ document.getElementById('saveButton').addEventListener('click', () => {
     jsEditor.setValue(savedEditCode);
     jsEditor.refresh;
   }
-  });
+});
 
-previewImg.onmousedown = function() {
-    if(waitForInput){
-        waitForInput = false;
-        console.log("mouseDown");
-    }
-};
 
 let brightness = "100", saturation = "100", inversion = "0", grayscale = "0";
 let rotate = 0, flipHorizontal = 1, flipVertical = 1;
 
-const loadImage = () => {
-    let file = fileInput.files[0];
-    if(!file) return;
-    previewImg.src = URL.createObjectURL(file);
-    previewImg.addEventListener("load", () => {
-        resetFilterBtn.click();
-        document.querySelector(".container").classList.remove("disable");
-    });
-}
 
 const applyFilter = () => {
     previewImg.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
@@ -222,9 +268,8 @@ const grayscaleFunc = () => {
 filterSlider.addEventListener("input", updateFilter);
 resetFilterBtn.addEventListener("click", resetFilter);
 saveImgBtn.addEventListener("click", saveImage);
-chooseImgBtn.addEventListener("click", removeImage);
-//fileInput.addEventListener("change", loadImage);
-//boxPlay.addEventListener("click", parseBlocks);
+chooseImgBtn.addEventListener("click", () => fileInput.click());
+
 
 if(!(localStorage.getItem('savedEditCode')===null)){
     console.log(localStorage.getItem('savedEditCode'));

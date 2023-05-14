@@ -104,6 +104,9 @@ function openMenu() {
   menuOpen = true
   overlay.style.display = 'block'
   sidebar.style.width = '50vw'
+  setTimeout(function() {
+    jsEditor.refresh();
+  },100);
 }
 
 function closeMenu() {
@@ -129,10 +132,25 @@ document.getElementById('saveButton').addEventListener('click', () => {
 
   const code = jsEditor.getValue();
   // save to local storage
+  localStorage.setItem('prevCodeSave', localStorage.getItem('savedCode'));
   localStorage.setItem('savedCode', code);
   location.reload();
 
-  });
+});
+
+document.getElementById('prevSaveButton').addEventListener('click', () => {
+
+    localStorage.setItem('savedCode', localStorage.getItem('prevCodeSave'));
+    location.reload();
+  
+});
+
+document.getElementById('resetButton').addEventListener('click', () => {
+
+  localStorage.setItem('savedCode', '');
+  location.reload();
+
+});
   
   window.addEventListener('DOMContentLoaded', (event) => {
   // retrieve the saved code from local storage
@@ -140,7 +158,6 @@ document.getElementById('saveButton').addEventListener('click', () => {
   if (savedCode) {
     // if there's saved code, load it into the editor
     jsEditor.setValue(savedCode);
-    jsEditor.refresh;
   }
   });
   
