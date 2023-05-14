@@ -116,10 +116,18 @@ document.getElementById('saveButton').addEventListener('click', () => {
 
   const code = jsEditor.getValue();
   // save to local storage
+  localStorage.setItem('prevCodeSave', localStorage.getItem('savedCode'));
   localStorage.setItem('savedCode', code);
   location.reload();
 
   });
+
+document.getElementById('prevSaveButton').addEventListener('click', () => {
+
+    localStorage.setItem('savedCode', localStorage.getItem('prevCodeSave'));
+    location.reload();
+  
+});
   
   window.addEventListener('DOMContentLoaded', (event) => {
   // retrieve the saved code from local storage

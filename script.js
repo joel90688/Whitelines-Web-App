@@ -79,10 +79,18 @@ document.getElementById('saveButton').addEventListener('click', () => {
 
   const code = jsEditor.getValue();
   // save to local storage
+  localStorage.setItem('prevEditSave', localStorage.getItem('savedEditCode'));
   localStorage.setItem('savedEditCode', code);
   location.reload();
 
   });
+
+document.getElementById('prevSaveButton').addEventListener('click', () => {
+
+    localStorage.setItem('savedEditCode', localStorage.getItem('prevEditSave'));
+    location.reload();
+  
+});
   
   window.addEventListener('DOMContentLoaded', (event) => {
   // retrieve the saved code from local storage
@@ -92,7 +100,9 @@ document.getElementById('saveButton').addEventListener('click', () => {
     jsEditor.setValue(savedEditCode);
     jsEditor.refresh;
   }
-  });
+});
+
+    
 
 previewImg.onmousedown = function() {
     if(waitForInput){
