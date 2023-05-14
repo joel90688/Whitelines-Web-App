@@ -151,6 +151,7 @@ body{
   background-size: contain;
   height: 100%;
   right: 0;
+  top: 0;
   width: auto;
   position: absolute;
   background-color: transparent;
@@ -166,9 +167,9 @@ body{
 }
 
 #githubButtonExtra {
+  width: 5vw;
   opacity: 0;
   background-image: url(images/GitHub_Logo.png);
-  width: 5vw;
   transition: opacity 0.5s ease;
 }
 
