@@ -70,8 +70,17 @@ fileInput.addEventListener('change', function () {
     img.style.cssText = 'float: left;width: 25%;padding: 5px;cursor: pointer';
     img.src = reader.result;
 
+    img.addEventListener('mouseover',
+    function(){ img.style.outline = "2px dotted grey";});
+    img.addEventListener('mouseout',
+    function(){ img.style.outline = "none";});
+
     // Add the img element to the imageList container
     document.getElementById("imageList").appendChild(img);
+    img.addEventListener('click', function () {
+      window.location.href = "edit.html";
+      localStorage.setItem("picture", img.src);
+    })
   };
   // Read the contents of the uploaded file as a data URL
   reader.readAsDataURL(file);
